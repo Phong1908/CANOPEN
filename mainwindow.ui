@@ -642,10 +642,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QTableWidget" name="tableWidget">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>0</y>
+        <x>0</x>
+        <y>330</y>
         <width>571</width>
-        <height>271</height>
+        <height>201</height>
        </rect>
       </property>
       <row>
@@ -840,30 +840,127 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QTableWidget" name="tableWidget_2">
       <property name="geometry">
        <rect>
-        <x>590</x>
+        <x>0</x>
         <y>0</y>
-        <width>661</width>
+        <width>1131</width>
         <height>271</height>
        </rect>
       </property>
       <column>
        <property name="text">
-        <string>index</string>
+        <string>Name</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>10</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="background">
+        <color>
+         <red>176</red>
+         <green>176</green>
+         <blue>176</blue>
+        </color>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>subindex</string>
+        <string>Index</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>10</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="background">
+        <color>
+         <red>176</red>
+         <green>176</green>
+         <blue>176</blue>
+        </color>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>data</string>
+        <string>Subindex</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>10</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="background">
+        <color>
+         <red>176</red>
+         <green>176</green>
+         <blue>176</blue>
+        </color>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>value</string>
+        <string>Type</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>10</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="background">
+        <color>
+         <red>176</red>
+         <green>176</green>
+         <blue>176</blue>
+        </color>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Data</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>10</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="background">
+        <color>
+         <red>176</red>
+         <green>176</green>
+         <blue>176</blue>
+        </color>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Value</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>10</pointsize>
+         <italic>false</italic>
+         <bold>true</bold>
+         <underline>false</underline>
+         <strikeout>false</strikeout>
+        </font>
+       </property>
+       <property name="background">
+        <color>
+         <red>176</red>
+         <green>176</green>
+         <blue>176</blue>
+        </color>
        </property>
       </column>
      </widget>

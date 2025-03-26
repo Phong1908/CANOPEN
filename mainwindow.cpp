@@ -9,7 +9,9 @@
 #include <QCanBusFrame>
 #include <QDebug>
 #include <QMap>
-
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-
+    loadJsonData(); // Load dữ liệu từ JSON khi khởi động
     // Tạo đối tượng Serial
     Serial = new QSerialPort(this);
     // Kết nối tín hiệu với slot xử lý
@@ -258,6 +260,8 @@ void MainWindow::parseCanData(const QByteArray &data) {
     // Cập nhật vào bảng QTableWidget
     updateTableValue(index, subindex, dataHex);
     updateTableValue1(index, subindex, dataHex, QString::number(valueDecimal));
+    ui->tableWidget_2->resizeColumnsToContents();
+
 }
 
 void MainWindow::updateTableValue(int index, int subindex, const QString &dataHex) {
@@ -279,35 +283,70 @@ void MainWindow::updateTableValue(int index, int subindex, const QString &dataHe
              << "Subindex" << QString::number(subindex, 16).toUpper();
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Lưu trữ vị trí của từng index, subindex
+    QMap<QPair<int, int>, int> rowMap;
 
-
-// Lưu trữ vị trí của từng index, subindex
-QMap<QPair<int, int>, int> rowMap;
-
+    // Hàm cập nhật giá trị vào bảng `QTableWidget_2`
 void MainWindow::updateTableValue1(int index, int subindex, const QString &dataHex, const QString &valueDecimal) {
     QPair<int, int> key = qMakePair(index, subindex);
+    QString name = nameMap.contains(key) ? nameMap[key] : "Unknown";
+    QString type = typeMap.contains(key) ? typeMap[key] : "Unknown";
 
     // Kiểm tra nếu ID đã tồn tại trong bảng
     if (rowMap.contains(key)) {
         int row = rowMap[key];
-        ui->tableWidget_2->setItem(row, 2, new QTableWidgetItem(dataHex));   // Cập nhật cột "Data" (cột 2)
-        ui->tableWidget_2->setItem(row, 3, new QTableWidgetItem(valueDecimal)); //Cập nhật cột "Value" (cột 3)
+        ui->tableWidget_2->setItem(row, 3, new QTableWidgetItem(type)); // Cập nhật Type
+        ui->tableWidget_2->setItem(row, 4, new QTableWidgetItem(dataHex));   // Cập nhật cột "Data"
+        ui->tableWidget_2->setItem(row, 5, new QTableWidgetItem(valueDecimal)); //Cập nhật cột "Value"
     } else {
         // Thêm dòng mới
-        int newRow = ui->tableWidget_2->rowCount();
-        ui->tableWidget_2->insertRow(newRow);
+    int newRow = ui->tableWidget_2->rowCount();
+    ui->tableWidget_2->insertRow(newRow);
 
-        // Gán giá trị vào từng cột
-        ui->tableWidget_2->setItem(newRow, 0, new QTableWidgetItem(QString::number(index, 16).toUpper())); // Index
-        ui->tableWidget_2->setItem(newRow, 1, new QTableWidgetItem(QString::number(subindex, 16).toUpper())); // Subindex
-        ui->tableWidget_2->setItem(newRow, 2, new QTableWidgetItem(dataHex));  // Tạm thời để trống
-        ui->tableWidget_2->setItem(newRow, 3, new QTableWidgetItem(valueDecimal));   // Cột "Value"
+    // Gán giá trị vào từng cột
+    ui->tableWidget_2->setItem(newRow, 0, new QTableWidgetItem(name));  // Name
+    ui->tableWidget_2->setItem(newRow, 1, new QTableWidgetItem(QString::number(index, 16).toUpper())); // Index
+    ui->tableWidget_2->setItem(newRow, 2, new QTableWidgetItem(QString::number(subindex, 16).toUpper())); // Subindex
+    ui->tableWidget_2->setItem(newRow, 3, new QTableWidgetItem(type));  // Type
+    ui->tableWidget_2->setItem(newRow, 4, new QTableWidgetItem(dataHex));  // data
+    ui->tableWidget_2->setItem(newRow, 5, new QTableWidgetItem(valueDecimal));   // Cột "Value"
 
-        // Lưu vị trí vào map để cập nhật nhanh hơn
-        rowMap[key] = newRow;
+    // Lưu vị trí vào map để cập nhật nhanh hơn
+    rowMap[key] = newRow;
     }
 }
+
+// Hàm đọc file JSON và lưu vào QMap
+void MainWindow::loadJsonData() {
+    QFile file("data.json");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "Không thể mở file JSON!";
+        return;
+    }
+
+    QByteArray jsonData = file.readAll();
+    file.close();
+
+    QJsonDocument doc = QJsonDocument::fromJson(jsonData);
+    QJsonArray dataArray = doc.array();
+
+    for (const QJsonValue &value : dataArray) {
+        QJsonObject obj = value.toObject();
+        int index = obj["index"].toString().toInt(nullptr, 16);
+        int subindex = obj["subindex"].toString().toInt(nullptr, 16);
+        QString name = obj["name"].toString();
+        QString type = obj["type"].toString();
+
+         qDebug() << "Name:" << name << "Type:" << type; // Kiểm tra dữ liệu
+
+        QPair<int, int> key = qMakePair(index, subindex);
+        nameMap[key] = name;
+        typeMap[key] = type;
+    }
+
+}
+
+
 
 
 

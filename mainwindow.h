@@ -19,6 +19,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void writeCanData(const QByteArray &data); //
+
+    QMap<QPair<int, int>, QString> nameMap;
+    QMap<QPair<int, int>, QString> typeMap;
     QMap<QPair<int, int>, int> rowMap; // Lưu vị trí của (index, subindex)
 
 private slots:
@@ -27,7 +30,6 @@ private slots:
     void on_pushButton_readData_clicked(); // Đọc dữ liệu
     void on_pushButton_clear_clicked();   // Xóa dữ liệu
     void readCanData();                    // Đọc dữ liệu từ Serial
-
     void on_pushButton_Send_clicked();
 
 private:
@@ -38,12 +40,13 @@ private:
     void updateTextBrowser(const QString &data); // Hiển thị dữ liệu vào textBrowser
     void sendCanData();
     void sendCanFrame();
-     QByteArray hexStringToByteArray(const QString &hex);
+    QByteArray hexStringToByteArray(const QString &hex);
     void updateTextBrowserSent(const QString &data);
     void parseCanData(const QByteArray &data);
     void updateTableValue(int index, int subindex, const QString &value);
     void updateTableValue1(int index, int subindex, const QString &dataHex, const QString &valueDecimal);
-    // void updateTableValue(int index, int subindex, const QString &data);
+    void loadJsonData();
+
 };
 #endif // MAINWINDOW_H
 
