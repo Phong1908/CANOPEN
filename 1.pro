@@ -1,9 +1,13 @@
-QT       += core gui
-QT       += core gui serialbus
-QT       += printsupport
+# QT       += core gui
+# QT       += core gui serialbus
+# QT       += printsupport
 QT       += serialbus
-QT       += core gui serialport
-QT       += core gui widgets
+# QT       += core gui serialport
+# QT       += core gui widgets
+QT       += core gui widgets printsupport serialbus serialport
+
+DEFINES += QT_NO_DEPRECATED_WARNINGS
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
