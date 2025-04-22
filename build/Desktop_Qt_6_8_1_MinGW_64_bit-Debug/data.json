@@ -1,0 +1,874 @@
+[
+        {
+            "index": "1000",
+            "subindex": "0000",
+            "name": "Device type",
+            "type": "UINT32"
+        },
+        {
+            "index": "1001",
+            "subindex": "0000",
+            "name": "Error register",
+            "type": "UINT8"
+        },
+        {
+            "index": "1008",
+            "subindex": "0000",
+            "name": "Device name",
+            "type": "STRING"
+        },
+        {
+            "index": "1009",
+            "subindex": "0000",
+            "name": "Hardware version",
+            "type": "STRING"
+        },
+        {
+            "index": "1018",
+            "subindex": "0000",
+            "name": "Identity SubIndex 000",
+            "type": "UINT8"
+        },
+        {
+            "index": "1018",
+            "subindex": "0001",
+            "name": "Identity Vendor ID",
+            "type": "UINT32"
+        },
+        {
+            "index": "1018",
+            "subindex": "0002",
+            "name": "Identity Product code",
+            "type": "UINT32"
+        },
+        {
+            "index": "1018",
+            "subindex": "0003",
+            "name": "Identity Revision",
+            "type": "UINT32"
+        },
+        {
+            "index": "1018",
+            "subindex": "0004",
+            "name": "Identity Serial number",
+            "type": "UINT32"
+        },
+        {
+            "index": "10F1",
+            "subindex": "0000",
+            "name": "Error Settings SubIndex 000",
+            "type": "UINT8"
+        },
+        {
+            "index": "10F1",
+            "subindex": "0001",
+            "name": "Error Settings Local Error Reaction",
+            "type": "UINT32"
+        },
+        {
+            "index": "10F1",
+            "subindex": "0002",
+            "name": "Error Settings Sync Error Counter Limit",
+            "type": "UINT16"
+        },
+        {
+            "index": "1600",
+            "subindex": "0000",
+            "name": "Drive RxPDO SubIndex 000",
+            "type": "UINT8"
+        },
+        {
+            "index": "1600",
+            "subindex": "0001",
+            "name": "Drive RxPDO Control Word",
+            "type": "UINT32"
+        },
+        {
+            "index": "1600",
+            "subindex": "0002",
+            "name": "Drive RxPDO Target Position",
+            "type": "UINT32"
+        },
+        {
+            "index": "1600",
+            "subindex": "0003",
+            "name": "Drive RxPDO Target Velocity",
+            "type": "UINT32"
+        },
+        {
+            "index": "1600",
+            "subindex": "0004",
+            "name": "Drive RxPDO Target Torque",
+            "type": "UINT32"
+        },
+        {
+            "index": "1600",
+            "subindex": "0005",
+            "name": "Drive RxPDO Mode Of Operation",
+            "type": "UINT32"
+        },
+        {
+            "index": "1601",
+            "subindex": "0000",
+            "name": "csp RxPDO SubIndex 000",
+            "type": "UINT8"
+        },
+        {
+            "index": "1601",
+            "subindex": "0001",
+            "name": "csp RxPDO Control Word",
+            "type": "UINT32"
+        },
+        {
+            "index": "1601",
+            "subindex": "0002",
+            "name": "csp RxPDO Target Position",
+            "type": "UINT32"
+        },
+        {
+            "index": "1602",
+            "subindex": "0000",
+            "name": "csv RxPDO SubIndex 000",
+            "type": "UINT8"
+        },
+        {
+            "index": "1602",
+            "subindex": "0001",
+            "name": "csv RxPDO Control Word",
+            "type": "UINT32"
+        },
+        {
+            "index": "1602",
+            "subindex": "0001",
+            "name": "csv RxPDO Mapping Entry 2",
+            "type": "UINT32"
+        },
+        {
+            "index": "1A00",
+            "subindex": "0000",
+            "name": "Drive TxPDO SubIndex 000",
+            "type": "UINT8"
+        },
+        {
+            "index": "1A00",
+            "subindex": "0001",
+            "name": "Drive TxPDO Status Word",
+            "type": "UINT32"
+        },
+        {
+            "index": "1A00",
+            "subindex": "0002",
+            "name": "Drive TxPDO Position Actual Value",
+            "type": "UINT32"
+        },
+        {
+            "index": "1A00",
+            "subindex": "0003",
+            "name": "Drive TxPDO Velocity Actual Value",
+            "type": "UINT32"
+        },
+        {
+            "index": "1A00",
+            "subindex": "0004",
+            "name": "Drive TxPDO Torque Actual Value",
+            "type": "UINT32"
+        },
+        {
+            "index": "1A00",
+            "subindex": "0005",
+            "name": "Drive TxPDO Mode Of Operation Display",
+            "type": "UINT32"
+        },
+        {
+            "index": "1A01",
+            "subindex": "0000",
+            "name": "csp TxPDO SubIndex 000",
+            "type": "UINT8"
+        },
+        {
+            "index": "1A01",
+            "subindex": "0001",
+            "name": "csp TxPDO Status Word",
+            "type": "UINT32"
+        },
+        {
+            "index": "1A01",
+            "subindex": "0002",
+            "name": "csp TxPDO Position Actual Value",
+            "type": "UINT32"
+        },
+        {
+            "index": "1A02",
+            "subindex": "0000",
+            "name": "csv TxPDO SubIndex 000",
+            "type": "UINT8"
+        },
+        {
+            "index": "1A02",
+            "subindex": "0001",
+            "name": "csv TxPDO Status Word",
+            "type": "UINT32"
+        },
+        {
+            "index": "1A02",
+            "subindex": "0002",
+            "name": "csv TxPDO Mapping Entry 2",
+            "type": "UINT32"
+        },
+        {
+            "index": "1C00",
+            "subindex": "0000",
+            "name": "Sync manager type SubIndex 000",
+            "type": "UINT8"
+        },
+        {
+            "index": "1C00",
+            "subindex": "0001",
+            "name": "Sync manager type SubIndex 001",
+            "type": "UINT8"
+        },
+        {
+            "index": "1C00",
+            "subindex": "0002",
+            "name": "Sync manager type SubIndex 002",
+            "type": "UINT8"
+        },
+        {
+            "index": "1C00",
+            "subindex": "0003",
+            "name": "Sync manager type SubIndex 003",
+            "type": "UINT8"
+        },
+        {
+            "index": "1C00",
+            "subindex": "0004",
+            "name": "Sync manager type SubIndex 004",
+            "type": "UINT8"
+        },
+        {
+            "index": "1C12",
+            "subindex": "0000",
+            "name": "Sync Manager 2 PDO Assignment",
+            "type": "UINT8"
+        },
+        {
+            "index": "1C12",
+            "subindex": "0001",
+            "name": "Sync Manager 2 PDO SubIndex 000",
+            "type": "UINT16"
+        },
+        {
+            "index": "1C13",
+            "subindex": "0000",
+            "name": "Sync Manager 3 PDO Assignment",
+            "type": "UINT8"
+        },
+        {
+            "index": "1C13",
+            "subindex": "0001",
+            "name": "Sync Manager 3 PDO SubIndex 000",
+            "type": "UINT16"
+        },
+        {
+            "index": "1C32",
+            "subindex": "0000",
+            "name": "SM output parameter SubIndex 000",
+            "type": "UINT8"
+        },
+        {
+            "index": "1C32",
+            "subindex": "0001",
+            "name": "SM output parameter Synchronization Type",
+            "type": "UINT16"
+        },
+        {
+            "index": "1C32",
+            "subindex": "0002",
+            "name": "SM output parameter Cycle Time",
+            "type": "UINT32"
+        },
+        {
+            "index": "1C32",
+            "subindex": "0003",
+            "name": "SM output parameter SubIndex 003",
+            "type": " "
+        },
+        {
+            "index": "1C32",
+            "subindex": "0004",
+            "name": "SM output parameter Synchronization Types ",
+            "type": "UINT16"
+        },
+        {
+            "index": "1C32",
+            "subindex": "0005",
+            "name": "SM output parameter supported",
+            "type": "UINT32"
+        },
+        {
+            "index": "1C32",
+            "subindex": "0006",
+            "name": "SM output parameter Minimum Cycle Time",
+            "type": "UINT32"
+        },
+        {
+            "index": "1C32",
+            "subindex": "0007",
+            "name": "SM output parameter Calc and Copy Time",
+            "type": " "
+        },
+        {
+            "index": "1C32",
+            "subindex": "0008",
+            "name": "SM output parameter SubIndex 007",
+            "type": "UINT16"
+        },
+        {
+            "index": "1C32",
+            "subindex": "0009",
+            "name": "SM output parameter Get Cycle Time",
+            "type": "UINT32"
+        },
+        {
+            "index": "1C32",
+            "subindex": "000A",
+            "name": "SM output parameter Delay Time",
+            "type": "UINT32"
+        },
+        {
+            "index": "1C32",
+            "subindex": "000B",
+            "name": "SM output parameter Sync0 Cycle Time",
+            "type": "UINT16"
+        },
+        {
+            "index": "1C32",
+            "subindex": "000C",
+            "name": "SM output parameter SM-Event Missed",
+            "type": "UINT16"
+        },
+        {
+            "index": "1C32",
+            "subindex": "000D",
+            "name": "SM output parameter Cycle Time Too Small",
+            "type": " "
+        },
+        {
+            "index": "1C32",
+            "subindex": "00E",
+            "name": "SM output parameter Shift Time Too Short",
+            "type": " "
+        },
+        {
+            "index": "1C32",
+            "subindex": "00F",
+            "name": "SM output parameter SubIndex 014",
+            "type": " "
+        },
+        {
+            "index": "1C32",
+            "subindex": "0010",
+            "name": "SM output parameter SubIndex 015",
+            "type": " "
+        },
+        {
+            "index": "1C32",
+            "subindex": "0011",
+            "name": "SM output parameter SubIndex 016",
+            "type": " "
+        },
+        {
+            "index": "1C32",
+            "subindex": "0012",
+            "name": "SM output parameter SubIndex 017",
+            "type": " "
+        },
+        {
+            "index": "1C32",
+            "subindex": "0020",
+            "name": "SM output parameter SubIndex 018",
+            "type": "BOOL"
+        },
+        {
+            "index": "1C33",
+            "subindex": "0000",
+            "name": "SM input parameter SubIndex 000",
+            "type": "UINT8"
+        },
+        {
+            "index": "1C33",
+            "subindex": "0001",
+            "name": "SM input parameter Synchronization Type",
+            "type": "UINT16"
+        },
+        {
+            "index": "1C33",
+            "subindex": "0002",
+            "name": "SM input parameter Cycle Time",
+            "type": "UINT32"
+        },
+        {
+            "index": "1C33",
+            "subindex": "0003",
+            "name": "SM input parameter SubIndex 003",
+            "type": " "
+        },
+        {
+            "index": "1C33",
+            "subindex": "0004",
+            "name": "SM input parameter Synchronization Types",
+            "type": "UINT16"
+        },
+        {
+            "index": "1C33",
+            "subindex": "0005",
+            "name": "SM input parameter supported",
+            "type": "UINT32"
+        },
+        {
+            "index": "1C33",
+            "subindex": "0006",
+            "name": "SM input parameter Minimum Cycle Time",
+            "type": "UINT32"
+        },
+        {
+            "index": "1C33",
+            "subindex": "0007",
+            "name": "SM input parameter Calc and Copy Time",
+            "type": " "
+        },
+        {
+            "index": "1C33",
+            "subindex": "0008",
+            "name": "SM input parameter SubIndex 007",
+            "type": "UINT16"
+        },
+        {
+            "index": "1C33",
+            "subindex": "0009",
+            "name": "SM input parameter Get Cycle Time",
+            "type": "UINT32"
+        },
+        {
+            "index": "1C33",
+            "subindex": "000A",
+            "name": "SM input parameter Delay Time",
+            "type": "UINT32"
+        },
+        {
+            "index": "1C33",
+            "subindex": "000B",
+            "name": "SM input parameter Sync0 Cycle Time",
+            "type": "UINT16"
+        },
+        {
+            "index": "1C33",
+            "subindex": "000C",
+            "name": "SM input parameter SM-Event Missed",
+            "type": "UINT16"
+        },
+        {
+            "index": "1C33",
+            "subindex": "000D",
+            "name": "SM input parameter Cycle Time Too Small",
+            "type": " "
+        },
+        {
+            "index": "1C33",
+            "subindex": "000E",
+            "name": "SM input parameter Shift Time Too Short",
+            "type": " "
+        },
+        {
+            "index": "1C33",
+            "subindex": "000F",
+            "name": "SM input parameter SubIndex 014",
+            "type": " "
+        },
+        {
+            "index": "1C33",
+            "subindex": "0010",
+            "name": "SM input parameter SubIndex 015",
+            "type": " "
+        },
+        {
+            "index": "1C33",
+            "subindex": "0011",
+            "name": "SM input parameter SubIndex 016",
+            "type": " "
+        },
+        {
+            "index": "1C33",
+            "subindex": "0012",
+            "name": "SM input parameter SubIndex 017",
+            "type": " "
+        },
+        {
+            "index": "1C33",
+            "subindex": "0020",
+            "name": "SM input parameter SubIndex 018",
+            "type": " "
+        },
+        {
+            "index": "603F",
+            "subindex": "0000",
+            "name": "error_code",
+            "type": "UINT16"
+        },
+        {
+            "index": "6040",
+            "subindex": "0000",
+            "name": "controlword",
+            "type": "UINT16"
+        },
+        {
+            "index": "6041",
+            "subindex": "0000",
+            "name": "statusword",
+            "type": "UINT16"
+        },
+        {
+            "index": "6060",
+            "subindex": "0000",
+            "name": "modes_of_operation",
+            "type": "INT8"
+        },
+        {
+            "index": "6061",
+            "subindex": "0000",
+            "name": "modes_of_operation_display",
+            "type": "INT8"
+        },
+        {
+            "index": "6062",
+            "subindex": "0000",
+            "name": "position_demand_value",
+            "type": "INT32"
+        },
+        {
+            "index": "6063",
+            "subindex": "0000",
+            "name": "position_actual_internal_value",
+            "type": "INT32"
+        },
+        {
+            "index": "6064",
+            "subindex": "0000",
+            "name": "position_actual_value",
+            "type": "INT32"
+        },
+        {
+            "index": "6071",
+            "subindex": "0000",
+            "name": "target_torque",
+            "type": "INT16"
+        },
+        {
+            "index": "6072",
+            "subindex": "0000",
+            "name": "max_torque",
+            "type": "UINT16"
+        },
+        {
+            "index": "6073",
+            "subindex": "0000",
+            "name": "max_current",
+            "type": "UINT16"
+        },
+        {
+            "index": "607A",
+            "subindex": "0000",
+            "name": "target_position",
+            "type": "INT32"
+        },
+        {
+            "index": "6080",
+            "subindex": "0000",
+            "name": "max_motor_speed",
+            "type": "UINT32"
+        },
+        {
+            "index": "60FF",
+            "subindex": "0000",
+            "name": "target_velocity",
+            "type": "INT32"
+        },{
+            "index": "60FD",
+            "subindex": "0000",
+            "name": "digital_inputs",
+            "type": "UINT32"
+        },
+        {
+            "index": "60FE",
+            "subindex": "0000",
+            "name": "digital_outputs SubIndex 001",
+            "type": "UINT8"
+        },
+        {
+            "index": "60FE",
+            "subindex": "0001",
+            "name": "digital_outputs SubIndex 001",
+            "type": "UINT32"
+        },
+        {
+            "index": "60FE",
+            "subindex": "0002",
+            "name": "digital_outputs SubIndex 002",
+            "type": "UINT32"
+        },
+        {
+            "index": "6066",
+            "subindex": "0000",
+            "name": "following_error_time_out",
+            "type": "UINT16"
+        },
+        {
+            "index": "6069",
+            "subindex": "0000",
+            "name": "velocity_sensor_actual_value",
+            "type": "INT32"
+        },
+        {
+            "index": "606B",
+            "subindex": "0000",
+            "name": "velocity_demand_value",
+            "type": "INT32"
+        },
+        {
+            "index": "606C",
+            "subindex": "0000",
+            "name": "velocity_actual_value",
+            "type": "INT32"
+        },
+        {
+            "index": "606F",
+            "subindex": "0000",
+            "name": "velocity_threshold",
+            "type": "UINT16"
+        },
+        {
+            "index": "6070",
+            "subindex": "0000",
+            "name": "velocity_threshold_time",
+            "type": "UINT16"
+        },
+        {
+            "index": "6074",
+            "subindex": "0000",
+            "name": "torque_demand",
+            "type": "INT16"
+        },
+        {
+            "index": "6075",
+            "subindex": "0000",
+            "name": "motor_rated_current",
+            "type": "UINT32"
+        },
+        {
+            "index": "6076",
+            "subindex": "0000",
+            "name": "motor_rated_torque",
+            "type": "UINT32"
+        },
+        {
+            "index": "6077",
+            "subindex": "0000",
+            "name": "torque_actual_value",
+            "type": "INT16"
+        },
+        {
+            "index": "6078",
+            "subindex": "0000",
+            "name": "current_actual_value",
+            "type": "INT16"
+        },
+        {
+            "index": "607E",
+            "subindex": "0000",
+            "name": "polarity",
+            "type": "UINT8"
+        },
+        {
+            "index": "60B2",
+            "subindex": "0000",
+            "name": "torque_offset",
+            "type": "INT16"
+        },
+        {
+            "index": "60BB",
+            "subindex": "0000",
+            "name": "touch_probe_pos_1_neg_value",
+            "type": "INT32"
+        },{
+            "index": "6065",
+            "subindex": "0000",
+            "name": "following_error_window",
+            "type": "UINT32"
+        },
+        {
+            "index": "606A",
+            "subindex": "0000",
+            "name": "sensor_selection_code",
+            "type": "INT16"
+        },
+        {
+            "index": "607C",
+            "subindex": "0000",
+            "name": "home_offset",
+            "type": "INT32"
+        },
+        {
+            "index": "608F",
+            "subindex": "0000",
+            "name": "position_encoder_resolution SubIndex 000",
+            "type": "UINT8"
+        },
+        {
+            "index": "608F",
+            "subindex": "0001",
+            "name": "position_encoder_resolution SubIndex 001",
+            "type": "UINT32"
+        },
+        {
+            "index": "608F",
+            "subindex": "0002",
+            "name": "position_encoder_resolution SubIndex 002",
+            "type": "UINT32"
+        },
+        {
+            "index": "6090",
+            "subindex": "0000",
+            "name": "velocity_encoder_resolution SubIndex 000",
+            "type": "UINT8"
+        },
+        {
+            "index": "6090",
+            "subindex": "0001",
+            "name": "velocity_encoder_resolution SubIndex 001",
+            "type": "UINT32"
+        },
+        {
+            "index": "6090",
+            "subindex": "0002",
+            "name": "velocity_encoder_resolution SubIndex 002",
+            "type": "UINT32"
+        },
+        {
+            "index": "6091",
+            "subindex": "0000",
+            "name": "gear_ratio SubIndex 000",
+            "type": "UINT8"
+        },
+        {
+            "index": "6091",
+            "subindex": "0001",
+            "name": "gear_ratio SubIndex 001",
+            "type": "UINT32"
+        },
+        {
+            "index": "6091",
+            "subindex": "0002",
+            "name": "gear_ratio SubIndex 002",
+            "type": "UINT32"
+        },
+        {
+            "index": "6092",
+            "subindex": "0000",
+            "name": "feed_constant SubIndex 000",
+            "type": "UINT8"
+        },
+        {
+            "index": "6092",
+            "subindex": "0001",
+            "name": "feed_constant SubIndex 001",
+            "type": "UINT32"
+        },
+        {
+            "index": "6092",
+            "subindex": "0002",
+            "name": "feed_constant SubIndex 002",
+            "type": "UINT32"
+        },
+        {
+            "index": "6098",
+            "subindex": "0000",
+            "name": "homing_method",
+            "type": "INT8"
+        },
+        {
+            "index": "6099",
+            "subindex": "0000",
+            "name": "homing_speed SubIndex 000",
+            "type": "UINT8"
+        },
+        {
+            "index": "6099",
+            "subindex": "0001",
+            "name": "homing_speed SubIndex 001",
+            "type": "UINT32"
+        },
+        {
+            "index": "6099",
+            "subindex": "0002",
+            "name": "homing_speed SubIndex 002",
+            "type": "UINT32"
+        },
+        {
+            "index": "609A",
+            "subindex": "0000",
+            "name": "homing_acceleration",
+            "type": "UINT32"
+        },
+        {
+            "index": "60B1",
+            "subindex": "0000",
+            "name": "velocity_offset",
+            "type": "INT32"
+        },
+        {
+            "index": "60B8",
+            "subindex": "0000",
+            "name": "touch_probe_function",
+            "type": "UINT16"
+        },
+        {
+            "index": "60B9",
+            "subindex": "0000",
+            "name": "touch_probe_status",
+            "type": "UINT16"
+        },
+        {
+            "index": "60BA",
+            "subindex": "0000",
+            "name": "touch_probe_pos_1_pos_value",
+            "type": "INT32"
+        },
+        {
+            "index": "0182",
+            "subindex": "0000",
+            "name": "id",
+            "type": "INT32"
+        },
+        {
+            "index": "0282",
+            "subindex": "0000",
+            "name": "iq",
+            "type": "INT32"
+        },
+        {
+            "index": "0702",
+            "subindex": "0000",
+            "name": "Producer heartbeat time",
+            "type": "INT32"
+        }
+]
+
+
+
+
+
+
+
+
+
+
