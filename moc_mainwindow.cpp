@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[8];
-    char stringdata0[165];
+    char stringdata0[172];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,20 +33,20 @@ struct qt_meta_stringdata_MainWindow_t {
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
-QT_MOC_LITERAL(1, 11, 27), // "on_pushButton_STOP_released"
-QT_MOC_LITERAL(2, 39, 0), // ""
-QT_MOC_LITERAL(3, 40, 26), // "on_pushButton_RUN_released"
-QT_MOC_LITERAL(4, 67, 30), // "on_pushButton_readData_clicked"
-QT_MOC_LITERAL(5, 98, 27), // "on_pushButton_clear_clicked"
-QT_MOC_LITERAL(6, 126, 11), // "readCanData"
-QT_MOC_LITERAL(7, 138, 26) // "on_pushButton_Send_clicked"
+QT_MOC_LITERAL(1, 11, 30), // "on_pushButton_readData_clicked"
+QT_MOC_LITERAL(2, 42, 0), // ""
+QT_MOC_LITERAL(3, 43, 27), // "on_pushButton_clear_clicked"
+QT_MOC_LITERAL(4, 71, 11), // "readCanData"
+QT_MOC_LITERAL(5, 83, 27), // "on_pushButton_SPEED_clicked"
+QT_MOC_LITERAL(6, 111, 27), // "on_pushButton_ANGLE_clicked"
+QT_MOC_LITERAL(7, 139, 32) // "on_pushButton_clear_sent_clicked"
 
     },
-    "MainWindow\0on_pushButton_STOP_released\0"
-    "\0on_pushButton_RUN_released\0"
-    "on_pushButton_readData_clicked\0"
-    "on_pushButton_clear_clicked\0readCanData\0"
-    "on_pushButton_Send_clicked"
+    "MainWindow\0on_pushButton_readData_clicked\0"
+    "\0on_pushButton_clear_clicked\0readCanData\0"
+    "on_pushButton_SPEED_clicked\0"
+    "on_pushButton_ANGLE_clicked\0"
+    "on_pushButton_clear_sent_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -88,12 +88,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->on_pushButton_STOP_released(); break;
-        case 1: _t->on_pushButton_RUN_released(); break;
-        case 2: _t->on_pushButton_readData_clicked(); break;
-        case 3: _t->on_pushButton_clear_clicked(); break;
-        case 4: _t->readCanData(); break;
-        case 5: _t->on_pushButton_Send_clicked(); break;
+        case 0: _t->on_pushButton_readData_clicked(); break;
+        case 1: _t->on_pushButton_clear_clicked(); break;
+        case 2: _t->readCanData(); break;
+        case 3: _t->on_pushButton_SPEED_clicked(); break;
+        case 4: _t->on_pushButton_ANGLE_clicked(); break;
+        case 5: _t->on_pushButton_clear_sent_clicked(); break;
         default: ;
         }
     }

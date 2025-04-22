@@ -14,12 +14,12 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="tabWidget_2">
+   <widget class="QTabWidget" name="tabWidget_1">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1271</width>
+      <width>1291</width>
       <height>561</height>
      </rect>
     </property>
@@ -30,7 +30,7 @@
      <attribute name="title">
       <string>Tab 1</string>
      </attribute>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="groupBox_4">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -66,7 +66,7 @@
       <property name="checkable">
        <bool>false</bool>
       </property>
-      <widget class="QGroupBox" name="groupBox_2">
+      <widget class="QGroupBox" name="groupBox_7">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -88,80 +88,11 @@ background-color: rgb(170, 255, 255);</string>
        <property name="title">
         <string>ĐIỀU KHIỂN </string>
        </property>
-       <widget class="QPushButton" name="pushButton_RUN">
+       <widget class="QPushButton" name="pushButton_ANGLE">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>70</y>
-          <width>111</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>16</pointsize>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(85, 255, 127);</string>
-        </property>
-        <property name="text">
-         <string>RUN</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_DK">
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>30</y>
-          <width>151</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>16</pointsize>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(255, 255, 127);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_STOP">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>70</y>
-          <width>111</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>16</pointsize>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 0, 0);
-color: rgb(0, 0, 0);</string>
-        </property>
-        <property name="text">
-         <string>STOP</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_STOP_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>160</y>
+          <y>110</y>
           <width>111</width>
           <height>31</height>
          </rect>
@@ -186,11 +117,11 @@ selection-color: rgb(255, 0, 0);</string>
          <string>ANGLE</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="lineEdit_value">
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>110</y>
+          <y>50</y>
           <width>113</width>
           <height>31</height>
          </rect>
@@ -205,11 +136,11 @@ selection-color: rgb(255, 0, 0);</string>
          <string notr="true">background-color: rgb(255, 255, 127);</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="label_4">
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>120</y>
+          <y>60</y>
           <width>91</width>
           <height>16</height>
          </rect>
@@ -227,11 +158,11 @@ selection-color: rgb(255, 0, 0);</string>
          <string>SETPOINT:</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_STOP_3">
+       <widget class="QPushButton" name="pushButton_SPEED">
         <property name="geometry">
          <rect>
           <x>140</x>
-          <y>160</y>
+          <y>110</y>
           <width>111</width>
           <height>31</height>
          </rect>
@@ -257,7 +188,7 @@ selection-color: rgb(255, 0, 0);</string>
         </property>
        </widget>
       </widget>
-      <widget class="QGroupBox" name="groupBox_3">
+      <widget class="QGroupBox" name="groupBox_8">
        <property name="geometry">
         <rect>
          <x>310</x>
@@ -282,18 +213,18 @@ background-color: rgb(170, 255, 255);</string>
        <property name="title">
         <string>DỮ LIỆU THỰC TẾ</string>
        </property>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="label_angle">
         <property name="geometry">
          <rect>
           <x>140</x>
-          <y>40</y>
-          <width>111</width>
+          <y>80</y>
+          <width>161</width>
           <height>31</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>8</pointsize>
           <bold>true</bold>
          </font>
         </property>
@@ -314,11 +245,11 @@ background-color: rgb(255, 255, 127);</string>
          <string/>
         </property>
        </widget>
-       <widget class="QLabel" name="label_4">
+       <widget class="QLabel" name="label_10">
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>50</y>
+          <y>80</y>
           <width>111</width>
           <height>16</height>
          </rect>
@@ -333,21 +264,21 @@ background-color: rgb(255, 255, 127);</string>
          <string notr="true">color: rgb(255, 0, 0);</string>
         </property>
         <property name="text">
-         <string>REAL SPEED:</string>
+         <string>ANGLE:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="label_id">
         <property name="geometry">
          <rect>
           <x>140</x>
-          <y>100</y>
-          <width>111</width>
+          <y>120</y>
+          <width>161</width>
           <height>31</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>8</pointsize>
           <bold>true</bold>
          </font>
         </property>
@@ -368,13 +299,45 @@ background-color: rgb(255, 255, 127);</string>
          <string/>
         </property>
        </widget>
-       <widget class="QLabel" name="label_5">
+       <widget class="QLabel" name="label_iq">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>160</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>8</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="acceptDrops">
+         <bool>false</bool>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 127);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_11">
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>110</y>
+          <y>130</y>
           <width>111</width>
-          <height>16</height>
+          <height>21</height>
          </rect>
         </property>
         <property name="font">
@@ -387,11 +350,33 @@ background-color: rgb(255, 255, 127);</string>
          <string notr="true">color: rgb(255, 0, 0);</string>
         </property>
         <property name="text">
-         <string>REAL ANGLE:</string>
+         <string>I_d:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_12">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>165</y>
+          <width>111</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 0, 0);</string>
+        </property>
+        <property name="text">
+         <string>I_q:</string>
         </property>
        </widget>
       </widget>
-      <widget class="QGroupBox" name="groupBox_6">
+      <widget class="QGroupBox" name="groupBox_9">
        <property name="geometry">
         <rect>
          <x>310</x>
@@ -449,7 +434,7 @@ background-color: rgb(170, 255, 255);</string>
         <property name="geometry">
          <rect>
           <x>220</x>
-          <y>180</y>
+          <y>200</y>
           <width>75</width>
           <height>24</height>
          </rect>
@@ -477,7 +462,7 @@ background-color: rgb(170, 255, 255);</string>
          <string notr="true">background-color: rgb(255, 255, 127);</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_6">
+       <widget class="QLabel" name="label_13">
         <property name="geometry">
          <rect>
           <x>170</x>
@@ -499,7 +484,7 @@ background-color: rgb(170, 255, 255);</string>
          <string>ID</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_7">
+       <widget class="QLabel" name="label_14">
         <property name="geometry">
          <rect>
           <x>170</x>
@@ -521,8 +506,21 @@ background-color: rgb(170, 255, 255);</string>
          <string>DATA</string>
         </property>
        </widget>
+       <widget class="QPushButton" name="pushButton_clear_sent">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>170</y>
+          <width>75</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Clear</string>
+        </property>
+       </widget>
       </widget>
-      <widget class="QGroupBox" name="groupBox_5">
+      <widget class="QGroupBox" name="groupBox_10">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -595,29 +593,29 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </widget>
       </widget>
      </widget>
-     <widget class="QTabWidget" name="tabWidget">
+     <widget class="QTabWidget" name="dothi_2">
       <property name="geometry">
        <rect>
         <x>630</x>
         <y>0</y>
-        <width>581</width>
+        <width>641</width>
         <height>541</height>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="dienap_2">
        <attribute name="title">
         <string>Tab 1</string>
        </attribute>
-       <widget class="QWidget" name="customPlotWidget" native="true">
+       <widget class="QWidget" name="customPlotWidget1" native="true">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>661</width>
-          <height>481</height>
+          <width>621</width>
+          <height>501</height>
          </rect>
         </property>
         <property name="mouseTracking">
@@ -628,222 +626,61 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </property>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="dongdien_2">
        <attribute name="title">
         <string>Tab 2</string>
        </attribute>
+       <widget class="QCustomPlot" name="customPlotWidget2" native="true">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>621</width>
+          <height>501</height>
+         </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="sosanh_theta_2">
+       <attribute name="title">
+        <string>Page</string>
+       </attribute>
+       <widget class="QWidget" name="customPlotWidget3" native="true">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>621</width>
+          <height>501</height>
+         </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_4">
+    <widget class="QWidget" name="tab_6">
      <attribute name="title">
       <string>Tab 2</string>
      </attribute>
-     <widget class="QTableWidget" name="tableWidget">
+     <widget class="QTableWidget" name="tableWidget_3">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>330</y>
-        <width>571</width>
-        <height>201</height>
-       </rect>
-      </property>
-      <row>
-       <property name="text">
-        <string>digital_inputs</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>digital_outputs</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string/>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string/>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string/>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>following_error_time_out</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>velocity_sensor_actual_value</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>velocity_demand_value</string>
-       </property>
-      </row>
-      <column>
-       <property name="text">
-        <string>index</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>sub-index</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>type</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>value</string>
-       </property>
-      </column>
-      <item row="0" column="0">
-       <property name="text">
-        <string>0446</string>
-       </property>
-      </item>
-      <item row="0" column="1">
-       <property name="text">
-        <string>0000</string>
-       </property>
-      </item>
-      <item row="0" column="2">
-       <property name="text">
-        <string>UINT16</string>
-       </property>
-      </item>
-      <item row="1" column="0">
-       <property name="text">
-        <string>60FE</string>
-       </property>
-       <property name="background">
-        <brush brushstyle="NoBrush">
-         <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>0</blue>
-         </color>
-        </brush>
-       </property>
-       <property name="foreground">
-        <brush brushstyle="NoBrush">
-         <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
-         </color>
-        </brush>
-       </property>
-      </item>
-      <item row="1" column="1">
-       <property name="text">
-        <string>0x00</string>
-       </property>
-      </item>
-      <item row="1" column="2">
-       <property name="text">
-        <string>UINT16</string>
-       </property>
-      </item>
-      <item row="2" column="0">
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item row="2" column="1">
-       <property name="text">
-        <string>0x01</string>
-       </property>
-      </item>
-      <item row="2" column="2">
-       <property name="text">
-        <string>UINT16</string>
-       </property>
-      </item>
-      <item row="3" column="1">
-       <property name="text">
-        <string>0x02</string>
-       </property>
-      </item>
-      <item row="3" column="2">
-       <property name="text">
-        <string>UINT16</string>
-       </property>
-      </item>
-      <item row="4" column="1">
-       <property name="text">
-        <string>0x03</string>
-       </property>
-      </item>
-      <item row="4" column="2">
-       <property name="text">
-        <string>UINT16</string>
-       </property>
-      </item>
-      <item row="5" column="0">
-       <property name="text">
-        <string>6066</string>
-       </property>
-      </item>
-      <item row="5" column="1">
-       <property name="text">
-        <string>0x00</string>
-       </property>
-      </item>
-      <item row="5" column="2">
-       <property name="text">
-        <string>UINT16</string>
-       </property>
-      </item>
-      <item row="6" column="0">
-       <property name="text">
-        <string>6069</string>
-       </property>
-      </item>
-      <item row="6" column="1">
-       <property name="text">
-        <string>0x00</string>
-       </property>
-      </item>
-      <item row="6" column="2">
-       <property name="text">
-        <string>UINT16</string>
-       </property>
-      </item>
-      <item row="7" column="0">
-       <property name="text">
-        <string>606B</string>
-       </property>
-      </item>
-      <item row="7" column="1">
-       <property name="text">
-        <string>0x00</string>
-       </property>
-      </item>
-      <item row="7" column="2">
-       <property name="text">
-        <string>UINT16</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QTableWidget" name="tableWidget_2">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
+        <x>10</x>
+        <y>10</y>
         <width>1131</width>
-        <height>271</height>
+        <height>511</height>
        </rect>
       </property>
       <column>
@@ -979,6 +816,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header>qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
