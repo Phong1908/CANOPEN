@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../serialworker.h"
+#include "C:/Users/ADMIN/Downloads/CANOPEN-QT/serialworker.h"
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>

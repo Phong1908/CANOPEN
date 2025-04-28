@@ -6,9 +6,9 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../../../QT_Linux/cantestdata/qcustomplot.h"
-#include <QtGui/qtextcursor.h>
+#include "../../../qcustomplot.h"
 #include <QtGui/qscreen.h>
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 #include <QtCore/QSharedPointer>
 #include <QtCore/QList>

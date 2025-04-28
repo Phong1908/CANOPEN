@@ -6,6 +6,9 @@
 #include <QSerialPort>
 #include <QTimer>
 #include <QElapsedTimer>
+#include "canworker.h"
+#include <QThread>
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -42,7 +45,6 @@ private:
     void setupSerialPort();             // Cài đặt cổng COM
     QLineEdit *lineEdit_value;
     void updateTextBrowser(const QString &data); // Hiển thị dữ liệu vào textBrowser
-    void sendCanData();
     void sendCanFrame();
     QByteArray hexStringToByteArray(const QString &hex);
     void updateTextBrowserSent(const QString &data);
@@ -52,16 +54,59 @@ private:
     void sendCANFrame(quint16 index, quint16 subindex, float value);
     void processReceivedCANFrame(const QByteArray &frame);
     void parseDataByPattern(const QByteArray &data);
-    QVector<double> timeData, idData, iqData;
-    QTimer *plotTimer;
-    double elapsedTime;
+    // Hàm tách header từ CAN data
+    bool parseCanHeader(const QByteArray &data, int &index, int &subindex, QByteArray &valueData);
+    // Chuyển dữ liệu sang decimal (int64)
+    qint64 convertToDecimal(const QByteArray &valueData);
+    // Chuyển dữ liệu sang float
+    float convertToFloat(const QByteArray &valueData);
+    // Xử lý các giá trị đặc biệt như angle, id, iq
+    void handleSpecialValues(int index, int subindex, float valueFloat);
+
+
+    // Dùng để tạo bảng input output
+    void loadCANDefinitions();
+    void appendToTableWidget(quint16 index, quint8 subindex, float data);
+    QList<QJsonObject> canDefinitions;
+
+
+
+    // Biến dùng cho đồ thị dòng điện
+    // QVector<double> timeData, idData, iqData;
+    // QTimer *plotTimer;
+    // double elapsedTime;
+    QCustomPlot *customPlotCurrent;
+    QTimer *currentTimer;
+
+    // QVector<double> timeCurrentData, idData, iqData;
+    // double elapsedCurrent = 0;
+
+    void updateCurrentPlot();
+    QVector<QPointF> currentBufferA, currentBufferB;
+    QMutex currentBufferMutex;
+    bool useCurrentBufferA = true;
+    QVector<double> totalTimeCurrent, totalId, totalIq;
+    double elapsedCurrent = 0;
 
     // Biến dùng cho đồ thị theta
+    // Cho đồ thị theta
     QCustomPlot *customPlotTheta;
-    QVector<double> timeThetaData, thetaNowData, thetaRefData;
+    QTimer *thetaPlotTimer;
+
+    QVector<QPointF> bufferA, bufferB;
+    QVector<double> totalTimeTheta, totalThetaRef, totalThetaNow;
+    QVector<double> thetaTimeData, thetaNowData, thetaRefData;
+    QMutex bufferMutex;
+    bool useBufferA = true;
     double elapsedTheta = 0;
-    double thetaRef = 0;
-    QTimer *thetaTimer;
+
+    void updateThetaPlot();
+
+    // dùng cho canworker(mutiple thread)
+    QThread *canThread;
+    CanWorker *canWorker;
+signals:
+    void sendCANCommand(quint16 index, quint16 subindex, float value);
 };
 #endif // MAINWINDOW_H
 

@@ -309,6 +309,7 @@ Makefile: ../../1.pro C:/Qt/6.8.1/mingw_64/mkspecs/win32-g++/qmake.conf C:/Qt/6.
 		../../1.pro \
 		C:/Qt/6.8.1/mingw_64/lib/Qt6PrintSupport.prl \
 		C:/Qt/6.8.1/mingw_64/lib/Qt6Widgets.prl \
+		C:/Qt/6.8.1/mingw_64/lib/Qt6OpenGL.prl \
 		C:/Qt/6.8.1/mingw_64/lib/Qt6Gui.prl \
 		C:/Qt/6.8.1/mingw_64/lib/Qt6SerialBus.prl \
 		C:/Qt/6.8.1/mingw_64/lib/Qt6Network.prl \
@@ -556,6 +557,7 @@ C:/Qt/6.8.1/mingw_64/mkspecs/features/lex.prf:
 ../../1.pro:
 C:/Qt/6.8.1/mingw_64/lib/Qt6PrintSupport.prl:
 C:/Qt/6.8.1/mingw_64/lib/Qt6Widgets.prl:
+C:/Qt/6.8.1/mingw_64/lib/Qt6OpenGL.prl:
 C:/Qt/6.8.1/mingw_64/lib/Qt6Gui.prl:
 C:/Qt/6.8.1/mingw_64/lib/Qt6SerialBus.prl:
 C:/Qt/6.8.1/mingw_64/lib/Qt6Network.prl:

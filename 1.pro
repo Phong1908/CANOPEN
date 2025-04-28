@@ -1,8 +1,6 @@
-QT       += core gui
-QT       += core gui serialbus
-QT       += printsupport
-QT       += serialbus
-QT       += core gui serialport
+QT += core gui widgets printsupport serialbus serialport opengl
+LIBS += -lopengl32
+DEFINES  += QCUSTOMPLOT_USE_OPENGL
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
@@ -12,15 +10,15 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    cansentworker.cpp \
     main.cpp \
     mainwindow.cpp \
-    qcustomplot.cpp \
-    serialworker.cpp
+    qcustomplot.cpp
 
 HEADERS += \
+    canworker.h \
     mainwindow.h \
-    qcustomplot.h \
-    serialworker.h
+    qcustomplot.h
 
 FORMS += \
     mainwindow.ui
@@ -31,4 +29,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/data1.json \
     data.json

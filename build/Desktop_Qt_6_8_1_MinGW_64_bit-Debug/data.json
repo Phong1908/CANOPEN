@@ -844,19 +844,25 @@
             "type": "INT32"
         },
         {
-            "index": "0182",
+            "index": "01A0",
+            "subindex": "0000",
+            "name": "theta_now",
+            "type": "INT32"
+        },
+        {
+            "index": "02A0",
             "subindex": "0000",
             "name": "id",
             "type": "INT32"
         },
         {
-            "index": "0282",
+            "index": "03A0",
             "subindex": "0000",
             "name": "iq",
             "type": "INT32"
         },
         {
-            "index": "0702",
+            "index": "0720",
             "subindex": "0000",
             "name": "Producer heartbeat time",
             "type": "INT32"

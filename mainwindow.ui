@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -404,113 +404,18 @@ background-color: rgb(170, 255, 255);</string>
           <x>10</x>
           <y>20</y>
           <width>291</width>
-          <height>131</height>
+          <height>171</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_CAN_Data">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>190</y>
-          <width>151</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 127);</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_Send">
-        <property name="geometry">
-         <rect>
-          <x>220</x>
-          <y>200</y>
-          <width>75</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>SEND</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_CAN_ID">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>160</y>
-          <width>151</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 127);</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_6">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>170</y>
-          <width>51</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 0, 0);</string>
-        </property>
-        <property name="text">
-         <string>ID</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_7">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>200</y>
-          <width>51</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 0, 0);</string>
-        </property>
-        <property name="text">
-         <string>DATA</string>
-        </property>
-       </widget>
        <widget class="QPushButton" name="pushButton_clear_sent">
         <property name="geometry">
          <rect>
           <x>220</x>
-          <y>170</y>
+          <y>200</y>
           <width>75</width>
           <height>24</height>
          </rect>
@@ -548,7 +453,7 @@ background-color: rgb(170, 255, 255);</string>
           <x>10</x>
           <y>20</y>
           <width>281</width>
-          <height>131</height>
+          <height>171</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -603,7 +508,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="dienap">
        <attribute name="title">
@@ -679,7 +584,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1131</width>
+        <width>781</width>
         <height>511</height>
        </rect>
       </property>
@@ -690,7 +595,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <property name="font">
         <font>
          <family>Times New Roman</family>
-         <pointsize>10</pointsize>
+         <pointsize>13</pointsize>
          <bold>true</bold>
         </font>
        </property>
@@ -709,7 +614,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <property name="font">
         <font>
          <family>Times New Roman</family>
-         <pointsize>10</pointsize>
+         <pointsize>13</pointsize>
          <bold>true</bold>
         </font>
        </property>
@@ -728,7 +633,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <property name="font">
         <font>
          <family>Times New Roman</family>
-         <pointsize>10</pointsize>
+         <pointsize>13</pointsize>
          <bold>true</bold>
         </font>
        </property>
@@ -747,7 +652,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <property name="font">
         <font>
          <family>Times New Roman</family>
-         <pointsize>10</pointsize>
+         <pointsize>13</pointsize>
          <bold>true</bold>
         </font>
        </property>
@@ -766,7 +671,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <property name="font">
         <font>
          <family>Times New Roman</family>
-         <pointsize>10</pointsize>
+         <pointsize>13</pointsize>
          <bold>true</bold>
         </font>
        </property>
@@ -785,7 +690,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <property name="font">
         <font>
          <family>Times New Roman</family>
-         <pointsize>10</pointsize>
+         <pointsize>13</pointsize>
          <italic>false</italic>
          <bold>true</bold>
          <underline>false</underline>
@@ -798,6 +703,81 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <green>176</green>
          <blue>176</blue>
         </color>
+       </property>
+      </column>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Page</string>
+     </attribute>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>801</width>
+        <height>511</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>Name</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>13</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Index</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>13</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Subindex</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>13</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Type</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>13</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Data</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>13</pointsize>
+         <bold>true</bold>
+        </font>
        </property>
       </column>
      </widget>
