@@ -1,9 +1,9 @@
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_driver.h:740:23:CO_getUint8	1
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_driver.h:760:23:CO_setUint8	1
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_driver.h:768:23:CO_setUint32	1
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_ODinterface.h:439:24:OD_getIndex	2
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_ODinterface.h:588:21:OD_extension_init	2
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_ODinterface.h:664:21:OD_get_u32	1
+D:/CANOPEN/STM32/CANopenNode/301/CO_driver.h:740:23:CO_getUint8	1
+D:/CANOPEN/STM32/CANopenNode/301/CO_driver.h:760:23:CO_setUint8	1
+D:/CANOPEN/STM32/CANopenNode/301/CO_driver.h:768:23:CO_setUint32	1
+D:/CANOPEN/STM32/CANopenNode/301/CO_ODinterface.h:439:24:OD_getIndex	2
+D:/CANOPEN/STM32/CANopenNode/301/CO_ODinterface.h:588:21:OD_extension_init	2
+D:/CANOPEN/STM32/CANopenNode/301/CO_ODinterface.h:664:21:OD_get_u32	1
 ../CANopenNode/301/CO_Emergency.c:129:14:OD_read_1014_default	7
 ../CANopenNode/301/CO_Emergency.c:182:14:OD_read_1003	12
 ../CANopenNode/301/CO_Emergency.c:222:14:OD_write_1003	7

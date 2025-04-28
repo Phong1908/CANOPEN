@@ -43,34 +43,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := spi_encoder_bldc
+BUILD_ARTIFACT_NAME := spi_encoder_bldc_canopen
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-spi_encoder_bldc.elf \
+spi_encoder_bldc_canopen.elf \
 
 MAP_FILES += \
-spi_encoder_bldc.map \
+spi_encoder_bldc_canopen.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-spi_encoder_bldc.list \
+spi_encoder_bldc_canopen.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: spi_encoder_bldc.elf secondary-outputs
+main-build: spi_encoder_bldc_canopen.elf secondary-outputs
 
 # Tool invocations
-spi_encoder_bldc.elf spi_encoder_bldc.map: $(OBJS) $(USER_OBJS) D:\namcuoiki2\spi_encoder_bldc\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "spi_encoder_bldc.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\namcuoiki2\spi_encoder_bldc\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="spi_encoder_bldc.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+spi_encoder_bldc_canopen.elf spi_encoder_bldc_canopen.map: $(OBJS) $(USER_OBJS) D:\CANOPEN\STM32\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "spi_encoder_bldc_canopen.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\CANOPEN\STM32\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="spi_encoder_bldc_canopen.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -79,14 +79,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-spi_encoder_bldc.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "spi_encoder_bldc.list"
+spi_encoder_bldc_canopen.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "spi_encoder_bldc_canopen.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) default.size.stdout spi_encoder_bldc.elf spi_encoder_bldc.list spi_encoder_bldc.map
+	-$(RM) default.size.stdout spi_encoder_bldc_canopen.elf spi_encoder_bldc_canopen.list spi_encoder_bldc_canopen.map
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

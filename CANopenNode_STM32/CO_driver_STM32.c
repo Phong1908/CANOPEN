@@ -315,6 +315,7 @@ prv_send_can_message(CO_CANmodule_t* CANmodule, CO_CANtx_t* buffer) {
     		 * RTR flag is part of identifier value
     		 * hence it needs to be properly decoded
     		 */
+    	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_SET);
         tx_hdr.ExtId = 0u;
         tx_hdr.IDE = CAN_ID_STD;
         tx_hdr.DLC = buffer->DLC;
@@ -327,6 +328,7 @@ prv_send_can_message(CO_CANmodule_t* CANmodule, CO_CANtx_t* buffer) {
         success = HAL_CAN_AddTxMessage(((CANopenNodeSTM32*)CANmodule->CANptr)->CANHandle, &tx_hdr, buffer->data,
                                        &TxMailboxNum)
                   == HAL_OK;
+        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_RESET);
     }
 #endif
     return success;
@@ -543,11 +545,13 @@ prv_read_can_received_msg(CAN_HandleTypeDef* hcan, uint32_t fifo, uint32_t fifo_
     /* Read received message from FIFO */
     if (HAL_CAN_GetRxMessage(hcan, fifo, &rx_hdr, rcvMsg.data) != HAL_OK) {
         return;
+        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
     }
     /* Setup identifier (with RTR) and length */
     rcvMsg.ident = rx_hdr.StdId | (rx_hdr.RTR == CAN_RTR_REMOTE ? FLAG_RTR : 0x00);
     rcvMsg.dlc = rx_hdr.DLC;
     rcvMsgIdent = rcvMsg.ident;
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
 #endif
 
     /*

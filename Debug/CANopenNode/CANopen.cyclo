@@ -1,5 +1,5 @@
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_Emergency.h:642:22:CO_isError	4
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_Emergency.h:657:23:CO_getErrorRegister	3
+D:/CANOPEN/STM32/CANopenNode/301/CO_Emergency.h:642:22:CO_isError	4
+D:/CANOPEN/STM32/CANopenNode/301/CO_Emergency.h:657:23:CO_getErrorRegister	3
 ../CANopenNode/301/CO_NMT_Heartbeat.h:318:38:CO_NMT_getInternalState	2
 ../CANopenNode/305/CO_LSSslave.h:192:30:CO_LSSslave_getState	2
 ../CANopenNode/CANopen.c:323:7:CO_new	20

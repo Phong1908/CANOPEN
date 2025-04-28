@@ -94,6 +94,7 @@ float adc_dma_voltage;
 int i = 0;
 float Iq_rate,idq=0;
 float32_t rx_theta = 0;
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -375,7 +376,7 @@ void position_loop()
 //	   if (error_pos > M_PI){
 //		   error_pos-=2*M_PI;
 //	    }
-	 static float error_pos_prev = 0;
+
 	    static float error_pos_sum = 0;
 	    static float position_dt = 0.012;
 
@@ -580,7 +581,7 @@ int main(void)
   canopenNodeSTM32.HWInitFunction = MX_CAN1_Init;
   canopenNodeSTM32.timerHandle = &htim7;
   canopenNodeSTM32.desiredNodeID = 32;
-  canopenNodeSTM32.baudrate = 500;
+  canopenNodeSTM32.baudrate = 1000;
   canopen_app_init(&canopenNodeSTM32);
 
   HAL_TIM_Base_Start(&htim1);
@@ -606,20 +607,14 @@ int main(void)
   while (1)
   {
 	  canopen_app_process();
-	  ODR_t err;
-	  	  {
-	  	  	OD_entry_t *entry = OD_find(OD, 0x2000);  // Tìm mục trong OD
-	  	  	if (entry != NULL) {
-	  	  	    err = OD_get_f32(entry, 0x01, &rx_theta, true);
+	  	  	OD_get_f32(OD_find(OD, 0x2000) , 0x01, &rx_theta, true);
+	  	  	     theta_ref=rx_theta;
 
-	  	  	}
-	  	  	theta_ref=rx_theta;
-	  	  	HAL_Delay(1);  // Cập nhật mỗi giây
-	  	  }
 
 	  	OD_PERSIST_COMM.x2200_TPDO.theta_now= theta_now;
 	  	OD_PERSIST_COMM.x2200_TPDO.i_d= i_d;
-	  	OD_PERSIST_COMM.x2200_TPDO.i_q=i_q;
+	  	OD_PERSIST_COMM.x2200_TPDO.i_q= i_q;
+
 	  if (flag_current_loop)
 	     {
 	         flag_current_loop = 0;
@@ -627,6 +622,8 @@ int main(void)
 	         Speed_Loop();
 	         update_PID();
 	         Current_Loop();
+
+	         }
 	       //  voltage = (adc_dma_value / 4095.0) * 3.3;
 
 	         i++;
@@ -694,7 +691,8 @@ int main(void)
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
-}
+
+
 
 /**
   * @brief System Clock Configuration
@@ -1312,20 +1310,20 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3|GPIO_PIN_8, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_3|GPIO_PIN_8, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : PB0 PB1 PB3 PB8 */
+  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_3|GPIO_PIN_8;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PA15 */
   GPIO_InitStruct.Pin = GPIO_PIN_15;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : PB3 PB8 */
-  GPIO_InitStruct.Pin = GPIO_PIN_3|GPIO_PIN_8;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */

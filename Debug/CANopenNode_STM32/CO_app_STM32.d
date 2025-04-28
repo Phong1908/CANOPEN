@@ -1,10 +1,10 @@
 CANopenNode_STM32/CO_app_STM32.o: ../CANopenNode_STM32/CO_app_STM32.c \
  ../CANopenNode_STM32/CO_app_STM32.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/CANopen.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_driver.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_config.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode_STM32/CO_driver_target.h \
- ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
+ D:/CANOPEN/STM32/CANopenNode/CANopen.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_driver.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_config.h \
+ D:/CANOPEN/STM32/CANopenNode_STM32/CO_driver_target.h ../Core/Inc/main.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
@@ -37,41 +37,41 @@ CANopenNode_STM32/CO_app_STM32.o: ../CANopenNode_STM32/CO_app_STM32.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_ODinterface.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_driver.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_NMT_Heartbeat.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_ODinterface.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_Emergency.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_HBconsumer.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_NMT_Heartbeat.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_Emergency.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_SDOserver.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_SDOclient.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_SDOserver.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_fifo.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_SYNC.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_PDO.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_SYNC.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_TIME.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/303/CO_LEDs.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/304/CO_GFC.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/304/CO_SRDO.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/305/CO_LSSslave.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/305/CO_LSS.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/305/CO_LSSmaster.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/309/CO_gateway_ascii.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_SDOclient.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/305/CO_LSSmaster.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/303/CO_LEDs.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/extra/CO_trace.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_ODinterface.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_driver.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_NMT_Heartbeat.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_ODinterface.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_Emergency.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_HBconsumer.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_NMT_Heartbeat.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_Emergency.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_SDOserver.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_SDOclient.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_SDOserver.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_fifo.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_SYNC.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_PDO.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_SYNC.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_TIME.h \
+ D:/CANOPEN/STM32/CANopenNode/303/CO_LEDs.h \
+ D:/CANOPEN/STM32/CANopenNode/304/CO_GFC.h \
+ D:/CANOPEN/STM32/CANopenNode/304/CO_SRDO.h \
+ D:/CANOPEN/STM32/CANopenNode/305/CO_LSSslave.h \
+ D:/CANOPEN/STM32/CANopenNode/305/CO_LSS.h \
+ D:/CANOPEN/STM32/CANopenNode/305/CO_LSSmaster.h \
+ D:/CANOPEN/STM32/CANopenNode/309/CO_gateway_ascii.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_SDOclient.h \
+ D:/CANOPEN/STM32/CANopenNode/305/CO_LSSmaster.h \
+ D:/CANOPEN/STM32/CANopenNode/303/CO_LEDs.h \
+ D:/CANOPEN/STM32/CANopenNode/extra/CO_trace.h \
  ../CANopenNode_STM32/CO_storageBlank.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/storage/CO_storage.h \
+ D:/CANOPEN/STM32/CANopenNode/storage/CO_storage.h \
  ../CANopenNode_STM32/OD.h
 ../CANopenNode_STM32/CO_app_STM32.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/CANopen.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_driver.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_config.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode_STM32/CO_driver_target.h:
+D:/CANOPEN/STM32/CANopenNode/CANopen.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_driver.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_config.h:
+D:/CANOPEN/STM32/CANopenNode_STM32/CO_driver_target.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -106,33 +106,33 @@ D:/namcuoiki2/spi_encoder_bldc/CANopenNode_STM32/CO_driver_target.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_ODinterface.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_driver.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_NMT_Heartbeat.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_ODinterface.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_Emergency.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_HBconsumer.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_NMT_Heartbeat.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_Emergency.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_SDOserver.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_SDOclient.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_SDOserver.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_fifo.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_SYNC.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_PDO.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_SYNC.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_TIME.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/303/CO_LEDs.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/304/CO_GFC.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/304/CO_SRDO.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/305/CO_LSSslave.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/305/CO_LSS.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/305/CO_LSSmaster.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/309/CO_gateway_ascii.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_SDOclient.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/305/CO_LSSmaster.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/303/CO_LEDs.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/extra/CO_trace.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_ODinterface.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_driver.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_NMT_Heartbeat.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_ODinterface.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_Emergency.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_HBconsumer.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_NMT_Heartbeat.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_Emergency.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_SDOserver.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_SDOclient.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_SDOserver.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_fifo.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_SYNC.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_PDO.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_SYNC.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_TIME.h:
+D:/CANOPEN/STM32/CANopenNode/303/CO_LEDs.h:
+D:/CANOPEN/STM32/CANopenNode/304/CO_GFC.h:
+D:/CANOPEN/STM32/CANopenNode/304/CO_SRDO.h:
+D:/CANOPEN/STM32/CANopenNode/305/CO_LSSslave.h:
+D:/CANOPEN/STM32/CANopenNode/305/CO_LSS.h:
+D:/CANOPEN/STM32/CANopenNode/305/CO_LSSmaster.h:
+D:/CANOPEN/STM32/CANopenNode/309/CO_gateway_ascii.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_SDOclient.h:
+D:/CANOPEN/STM32/CANopenNode/305/CO_LSSmaster.h:
+D:/CANOPEN/STM32/CANopenNode/303/CO_LEDs.h:
+D:/CANOPEN/STM32/CANopenNode/extra/CO_trace.h:
 ../CANopenNode_STM32/CO_storageBlank.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/storage/CO_storage.h:
+D:/CANOPEN/STM32/CANopenNode/storage/CO_storage.h:
 ../CANopenNode_STM32/OD.h:

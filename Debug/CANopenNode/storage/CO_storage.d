@@ -1,9 +1,9 @@
 CANopenNode/storage/CO_storage.o: ../CANopenNode/storage/CO_storage.c \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/storage/CO_storage.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_driver.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_config.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode_STM32/CO_driver_target.h \
- ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
+ D:/CANOPEN/STM32/CANopenNode/storage/CO_storage.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_driver.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_config.h \
+ D:/CANOPEN/STM32/CANopenNode_STM32/CO_driver_target.h ../Core/Inc/main.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
@@ -36,11 +36,11 @@ CANopenNode/storage/CO_storage.o: ../CANopenNode/storage/CO_storage.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_ODinterface.h
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/storage/CO_storage.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_driver.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_config.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode_STM32/CO_driver_target.h:
+ D:/CANOPEN/STM32/CANopenNode/301/CO_ODinterface.h
+D:/CANOPEN/STM32/CANopenNode/storage/CO_storage.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_driver.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_config.h:
+D:/CANOPEN/STM32/CANopenNode_STM32/CO_driver_target.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -75,4 +75,4 @@ D:/namcuoiki2/spi_encoder_bldc/CANopenNode_STM32/CO_driver_target.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
-D:/namcuoiki2/spi_encoder_bldc/CANopenNode/301/CO_ODinterface.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_ODinterface.h:
