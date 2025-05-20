@@ -1,5 +1,5 @@
-#ifndef CANWORKER_H
-#define CANWORKER_H
+#ifndef CANSENTWORKER_H
+#define CANSENTWORKER_H
 
 #include <QObject>
 #include <QByteArray>
@@ -18,6 +18,7 @@ signals:
 
 public slots:
     void handleSendFrame(quint16 index, quint16 subindex, float value);
+    void sendPIDFrame(quint16 index, float kp, float ki, float kd);
     void startListening();
 
 
@@ -25,4 +26,4 @@ private:
     QSerialPort *serial;
 };
 
-#endif // CANWORKER_H
+#endif // CANSENTWORKER_H

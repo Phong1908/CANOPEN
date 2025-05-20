@@ -47,6 +47,10 @@ static constexpr auto qt_meta_stringdata_ZN9CanWorkerE = QtMocHelpers::stringDat
     "index",
     "subindex",
     "value",
+    "sendPIDFrame",
+    "kp",
+    "ki",
+    "kd",
     "startListening"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
@@ -59,7 +63,7 @@ Q_CONSTINIT static const uint qt_meta_data_ZN9CanWorkerE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -67,12 +71,13 @@ Q_CONSTINIT static const uint qt_meta_data_ZN9CanWorkerE[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   38,    2, 0x06,    1 /* Public */,
-       4,    1,   41,    2, 0x06,    3 /* Public */,
+       1,    1,   44,    2, 0x06,    1 /* Public */,
+       4,    1,   47,    2, 0x06,    3 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       6,    3,   44,    2, 0x0a,    5 /* Public */,
-      10,    0,   51,    2, 0x0a,    9 /* Public */,
+       6,    3,   50,    2, 0x0a,    5 /* Public */,
+      10,    4,   57,    2, 0x0a,    9 /* Public */,
+      14,    0,   66,    2, 0x0a,   14 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QByteArray,    3,
@@ -80,6 +85,7 @@ Q_CONSTINIT static const uint qt_meta_data_ZN9CanWorkerE[] = {
 
  // slots: parameters
     QMetaType::Void, QMetaType::UShort, QMetaType::UShort, QMetaType::Float,    7,    8,    9,
+    QMetaType::Void, QMetaType::UShort, QMetaType::Float, QMetaType::Float, QMetaType::Float,    7,   11,   12,   13,
     QMetaType::Void,
 
        0        // eod
@@ -105,6 +111,12 @@ Q_CONSTINIT const QMetaObject CanWorker::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<quint16, std::false_type>,
         QtPrivate::TypeAndForceComplete<quint16, std::false_type>,
         QtPrivate::TypeAndForceComplete<float, std::false_type>,
+        // method 'sendPIDFrame'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<quint16, std::false_type>,
+        QtPrivate::TypeAndForceComplete<float, std::false_type>,
+        QtPrivate::TypeAndForceComplete<float, std::false_type>,
+        QtPrivate::TypeAndForceComplete<float, std::false_type>,
         // method 'startListening'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
@@ -119,7 +131,8 @@ void CanWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 0: _t->canDataReceived((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
         case 1: _t->logMessage((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 2: _t->handleSendFrame((*reinterpret_cast< std::add_pointer_t<quint16>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<quint16>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[3]))); break;
-        case 3: _t->startListening(); break;
+        case 3: _t->sendPIDFrame((*reinterpret_cast< std::add_pointer_t<quint16>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[4]))); break;
+        case 4: _t->startListening(); break;
         default: ;
         }
     }
@@ -161,14 +174,14 @@ int CanWorker::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

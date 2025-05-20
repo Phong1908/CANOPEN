@@ -1,5 +1,29 @@
 [
         {
+            "index": "01A0",
+            "subindex": "0000",
+            "name": "theta_actual_value",
+            "type": "REAL32"
+        },
+        {
+            "index": "02A0",
+            "subindex": "0000",
+            "name": "current_actual_value",
+            "type": "REAL32"
+        },
+        {
+            "index": "03A0",
+            "subindex": "0000",
+            "name": "voltage_actual_value",
+            "type": "REAL32"
+        },
+        {
+            "index": "0720",
+            "subindex": "0000",
+            "name": "Producer heartbeat time",
+            "type": "INT32"
+        },
+        {
             "index": "1000",
             "subindex": "0000",
             "name": "Device type",
@@ -844,29 +868,12 @@
             "type": "INT32"
         },
         {
-            "index": "01A0",
+            "index": "0182",
             "subindex": "0000",
-            "name": "theta_now",
-            "type": "INT32"
-        },
-        {
-            "index": "02A0",
-            "subindex": "0000",
-            "name": "id",
-            "type": "INT32"
-        },
-        {
-            "index": "03A0",
-            "subindex": "0000",
-            "name": "iq",
-            "type": "INT32"
-        },
-        {
-            "index": "0720",
-            "subindex": "0000",
-            "name": "Producer heartbeat time",
-            "type": "INT32"
+            "name": "theta_actual_sent",
+            "type": "REAL32"
         }
+
 ]
 
 

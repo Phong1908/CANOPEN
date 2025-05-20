@@ -6,7 +6,7 @@
 #include <QSerialPort>
 #include <QTimer>
 #include <QElapsedTimer>
-#include "canworker.h"
+#include "cansentworker.h"
 #include <QThread>
 
 QT_BEGIN_NAMESPACE
@@ -30,19 +30,26 @@ public:
 
 private slots:
 
-    void on_pushButton_readData_clicked(); // Đọc dữ liệu
+
     void on_pushButton_clear_clicked();   // Xóa dữ liệu
     void readCanData();                    // Đọc dữ liệu từ Serial
 
     void on_pushButton_SPEED_clicked();
     void on_pushButton_ANGLE_clicked();
     void on_pushButton_clear_sent_clicked();
+    void on_pushButton_okPort_clicked();
+    void on_pushButton_refresh_clicked();
+    void on_pushButton_sent_speed_clicked();
+    void on_pushButton_send_pos_clicked();
+    void on_pushButton_Mode_Speed_clicked();
+    void on_pushButton_Mode_Position_clicked();
 
 private:
     Ui::MainWindow *ui;
     QSerialPort *Serial;                 // Serial port object
     QTimer *timer;                         // Đọc dữ liệu theo chu kỳ
     void setupSerialPort();             // Cài đặt cổng COM
+    void listAvailableSerialPorts();
     QLineEdit *lineEdit_value;
     void updateTextBrowser(const QString &data); // Hiển thị dữ liệu vào textBrowser
     void sendCanFrame();
@@ -61,20 +68,19 @@ private:
     // Chuyển dữ liệu sang float
     float convertToFloat(const QByteArray &valueData);
     // Xử lý các giá trị đặc biệt như angle, id, iq
-    void handleSpecialValues(int index, int subindex, float valueFloat);
+    void handleSpecialValues(int index, int subindex, const QByteArray &valueData);
+    QByteArray removeFrameCtrl(const QByteArray &rawData);
 
 
     // Dùng để tạo bảng input output
     void loadCANDefinitions();
-    void appendToTableWidget(quint16 index, quint8 subindex, float data);
+    void appendToTableWidget(quint16 index, quint8 subindex, const QByteArray &valueData);
     QList<QJsonObject> canDefinitions;
 
 
 
+
     // Biến dùng cho đồ thị dòng điện
-    // QVector<double> timeData, idData, iqData;
-    // QTimer *plotTimer;
-    // double elapsedTime;
     QCustomPlot *customPlotCurrent;
     QTimer *currentTimer;
 
@@ -87,11 +93,23 @@ private:
     bool useCurrentBufferA = true;
     QVector<double> totalTimeCurrent, totalId, totalIq;
     double elapsedCurrent = 0;
+    QElapsedTimer currentTimerElapsed;
+
+    // biến dùng cho đồ thị điện áp
+    QCustomPlot *customPlotVoltage;
+    QMutex voltageBufferMutex;
+    QVector<QPointF> voltageBufferA, voltageBufferB;
+    QVector<double> totalTimeVoltage, totalUd, totalUq;
+    bool useVoltageBufferA = true;
+    QTimer *VoltageTimer;
+    void updateVoltagePlot();
+    double elapsedVoltage = 0;
+    QElapsedTimer voltageTimerElapsed;
 
     // Biến dùng cho đồ thị theta
-    // Cho đồ thị theta
     QCustomPlot *customPlotTheta;
     QTimer *thetaPlotTimer;
+    QElapsedTimer thetaTimer;
 
     QVector<QPointF> bufferA, bufferB;
     QVector<double> totalTimeTheta, totalThetaRef, totalThetaNow;
@@ -106,7 +124,7 @@ private:
     QThread *canThread;
     CanWorker *canWorker;
 signals:
-    void sendCANCommand(quint16 index, quint16 subindex, float value);
+    void sendCANCommand(quint16 index, quint16 subindex, double value);
 };
 #endif // MAINWINDOW_H
 
