@@ -119,7 +119,8 @@ release/qrc_image.cpp: ../../image.qrc \
 		C:/Qt/6.8.1/mingw_64/bin/rcc.exe \
 		../../images/anh1.jpg \
 		../../images/anh2.png \
-		../../images/anh3.jpg
+		../../images/anh3.jpg \
+		../../images/save.jpg
 	C:\Qt\6.8.1\mingw_64\bin\rcc.exe -name image --no-zstd ..\..\image.qrc -o release\qrc_image.cpp
 
 compiler_moc_predefs_make_all: release/moc_predefs.h
@@ -2638,7 +2639,8 @@ release/MainWindow.o: ../../MainWindow.cpp ../../mainwindow.h \
 		C:/Qt/6.8.1/mingw_64/include/QtSerialBus/QCanBusFrame \
 		C:/Qt/6.8.1/mingw_64/include/QtCore/QJsonDocument \
 		C:/Qt/6.8.1/mingw_64/include/QtCore/QJsonArray \
-		C:/Qt/6.8.1/mingw_64/include/QtCore/QJsonObject
+		C:/Qt/6.8.1/mingw_64/include/QtCore/QJsonObject \
+		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QFileDialog
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\MainWindow.o ..\..\MainWindow.cpp
 
 release/cansentworker.o: ../../cansentworker.cpp ../../cansentworker.h \

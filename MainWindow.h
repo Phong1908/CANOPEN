@@ -33,16 +33,21 @@ private slots:
 
     void on_pushButton_clear_clicked();   // Xóa dữ liệu
     void readCanData();                    // Đọc dữ liệu từ Serial
-
     void on_pushButton_SPEED_clicked();
     void on_pushButton_ANGLE_clicked();
     void on_pushButton_clear_sent_clicked();
     void on_pushButton_okPort_clicked();
     void on_pushButton_refresh_clicked();
-    void on_pushButton_sent_speed_clicked();
-    void on_pushButton_send_pos_clicked();
     void on_pushButton_Mode_Speed_clicked();
     void on_pushButton_Mode_Position_clicked();
+    void on_save_plot_current_clicked();
+    void on_save_plot_speed_clicked();
+    void on_save_plot_angle_clicked();
+    void on_pushButton_change_PID_clicked();
+    void on_pushButton_send_PID_clicked();
+    void on_pushButton_refresh_PID_clicked();
+
+
 
 private:
     Ui::MainWindow *ui;
@@ -120,9 +125,32 @@ private:
 
     void updateThetaPlot();
 
+    // Biến dùng cho đồ thị speed điều khiển vị trí
+    QCustomPlot *customPlotSpeed;
+    QTimer *speedPlotTimer;
+
+    QVector<QPointF> speedBufferA, speedBufferB;
+    QMutex speedBufferMutex;
+    bool useSpeedBufferA = true;
+
+    QVector<double> totalTimeSpeed, totalSpeedNow;
+    void updateSpeedPlot();
+
+    //Biến dùng cho đồ thị speed điều khiển tốc độ
+    QCustomPlot *customPlotSpeedGraph;
+    QTimer *speedGraphTimer;
+    QElapsedTimer speedGraphElapsedTimer;
+
+    QVector<QPointF> speedGraphBufferA, speedGraphBufferB;
+    QVector<double> totalTimeSpeedGraph, totalSpeedNowGraph, totalSpeedRefGraph;
+    QMutex speedGraphBufferMutex;
+    bool useSpeedGraphBufferA = true;
+    void updateSpeedGraphPlot();
     // dùng cho canworker(mutiple thread)
     QThread *canThread;
     CanWorker *canWorker;
+    // dùng để bật tắt cạp nhật pid
+    bool autoUpdatePID = true;
 signals:
     void sendCANCommand(quint16 index, quint16 subindex, double value);
 };

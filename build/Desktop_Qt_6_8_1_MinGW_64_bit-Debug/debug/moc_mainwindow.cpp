@@ -52,10 +52,14 @@ static constexpr auto qt_meta_stringdata_ZN10MainWindowE = QtMocHelpers::stringD
     "on_pushButton_clear_sent_clicked",
     "on_pushButton_okPort_clicked",
     "on_pushButton_refresh_clicked",
-    "on_pushButton_sent_speed_clicked",
-    "on_pushButton_send_pos_clicked",
     "on_pushButton_Mode_Speed_clicked",
-    "on_pushButton_Mode_Position_clicked"
+    "on_pushButton_Mode_Position_clicked",
+    "on_save_plot_current_clicked",
+    "on_save_plot_speed_clicked",
+    "on_save_plot_angle_clicked",
+    "on_pushButton_change_PID_clicked",
+    "on_pushButton_send_PID_clicked",
+    "on_pushButton_refresh_PID_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -67,7 +71,7 @@ Q_CONSTINIT static const uint qt_meta_data_ZN10MainWindowE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -75,25 +79,33 @@ Q_CONSTINIT static const uint qt_meta_data_ZN10MainWindowE[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    3,   86,    2, 0x06,    1 /* Public */,
+       1,    3,  110,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       6,    0,   93,    2, 0x08,    5 /* Private */,
-       7,    0,   94,    2, 0x08,    6 /* Private */,
-       8,    0,   95,    2, 0x08,    7 /* Private */,
-       9,    0,   96,    2, 0x08,    8 /* Private */,
-      10,    0,   97,    2, 0x08,    9 /* Private */,
-      11,    0,   98,    2, 0x08,   10 /* Private */,
-      12,    0,   99,    2, 0x08,   11 /* Private */,
-      13,    0,  100,    2, 0x08,   12 /* Private */,
-      14,    0,  101,    2, 0x08,   13 /* Private */,
-      15,    0,  102,    2, 0x08,   14 /* Private */,
-      16,    0,  103,    2, 0x08,   15 /* Private */,
+       6,    0,  117,    2, 0x08,    5 /* Private */,
+       7,    0,  118,    2, 0x08,    6 /* Private */,
+       8,    0,  119,    2, 0x08,    7 /* Private */,
+       9,    0,  120,    2, 0x08,    8 /* Private */,
+      10,    0,  121,    2, 0x08,    9 /* Private */,
+      11,    0,  122,    2, 0x08,   10 /* Private */,
+      12,    0,  123,    2, 0x08,   11 /* Private */,
+      13,    0,  124,    2, 0x08,   12 /* Private */,
+      14,    0,  125,    2, 0x08,   13 /* Private */,
+      15,    0,  126,    2, 0x08,   14 /* Private */,
+      16,    0,  127,    2, 0x08,   15 /* Private */,
+      17,    0,  128,    2, 0x08,   16 /* Private */,
+      18,    0,  129,    2, 0x08,   17 /* Private */,
+      19,    0,  130,    2, 0x08,   18 /* Private */,
+      20,    0,  131,    2, 0x08,   19 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::UShort, QMetaType::UShort, QMetaType::Double,    3,    4,    5,
 
  // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -137,13 +149,21 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_refresh_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_pushButton_sent_speed_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_pushButton_send_pos_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_Mode_Speed_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_Mode_Position_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_save_plot_current_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_save_plot_speed_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_save_plot_angle_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_change_PID_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_send_PID_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_refresh_PID_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -162,10 +182,14 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 5: _t->on_pushButton_clear_sent_clicked(); break;
         case 6: _t->on_pushButton_okPort_clicked(); break;
         case 7: _t->on_pushButton_refresh_clicked(); break;
-        case 8: _t->on_pushButton_sent_speed_clicked(); break;
-        case 9: _t->on_pushButton_send_pos_clicked(); break;
-        case 10: _t->on_pushButton_Mode_Speed_clicked(); break;
-        case 11: _t->on_pushButton_Mode_Position_clicked(); break;
+        case 8: _t->on_pushButton_Mode_Speed_clicked(); break;
+        case 9: _t->on_pushButton_Mode_Position_clicked(); break;
+        case 10: _t->on_save_plot_current_clicked(); break;
+        case 11: _t->on_save_plot_speed_clicked(); break;
+        case 12: _t->on_save_plot_angle_clicked(); break;
+        case 13: _t->on_pushButton_change_PID_clicked(); break;
+        case 14: _t->on_pushButton_send_PID_clicked(); break;
+        case 15: _t->on_pushButton_refresh_PID_clicked(); break;
         default: ;
         }
     }
@@ -200,14 +224,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 12)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 16;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 12)
+        if (_id < 16)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 12;
+        _id -= 16;
     }
     return _id;
 }

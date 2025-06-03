@@ -4,6 +4,7 @@
             "subindex": "0000",
             "name": "theta_actual_value",
             "type": "REAL32"
+
         },
         {
             "index": "02A0",

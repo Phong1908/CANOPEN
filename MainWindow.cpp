@@ -13,12 +13,15 @@
 #include <QJsonObject>
 #include <QThread>
 #include <chrono>
-
+#include <QFileDialog>
+#include <QPainter>
+#include <QPixmap>
 
 // Biến tạm để lưu giá trị id/iq
 float id_tmp = 0;
 float iq_tmp = 0;
 float theta_ref_global = 0.0f;
+float speed_ref_global = 0.0f;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -35,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
     // ui->dothi->setTabText(0, "Graph Voltage");
     ui->dothi->setTabText(0, "Graph Current");
     ui->dothi->setTabText(1, "Graph Angle");
+    ui->dothi->setTabText(2, "Graph Speed");
     ui->alltab->setTabText(0, "Graph and Controls");
     ui->alltab->setTabText(1, "PDO and SDO List");
     ui->alltab->setTabText(2, "Received and Sent Messages");
@@ -55,6 +59,9 @@ MainWindow::MainWindow(QWidget *parent)
     // Hiệu ứng khoảng cách và tự động dãn
     ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tableWidget_2->setStyleSheet("QTableWidget::item { padding: 6px; }");
+
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidget->setStyleSheet("QTableWidget::item { padding: 6px; }");
 
     // 1. Tạo thread và worker
     canThread = new QThread(this);
@@ -109,6 +116,17 @@ MainWindow::MainWindow(QWidget *parent)
     customPlotCurrent->setGeometry(ui->customPlotWidget2->rect());
     customPlotCurrent->setOpenGl(true); // Bật Double Buffer với OpenGL
 
+    // Cỡ chữ 18
+    QFont font18("Times New Roman", 18);
+    customPlotCurrent->xAxis->setLabelFont(font18);
+    customPlotCurrent->yAxis->setLabelFont(font18);
+    customPlotCurrent->xAxis->setTickLabelFont(font18);
+    customPlotCurrent->yAxis->setTickLabelFont(font18);
+    customPlotCurrent->legend->setFont(font18);
+
+    // tên đồ thị
+    customPlotCurrent->plotLayout()->insertRow(0);
+    customPlotCurrent->plotLayout()->addElement(0, 0, new QCPTextElement(customPlotCurrent, "Graph Current", font18));
     // Graph 0: id (xanh)
     customPlotCurrent->addGraph();
     customPlotCurrent->graph(0)->setPen(QPen(Qt::blue));
@@ -133,7 +151,19 @@ MainWindow::MainWindow(QWidget *parent)
     customPlotTheta->setGeometry(ui->customPlotWidget3->rect());
     customPlotTheta->setOpenGl(true);
 
-    // Thêm 2 đồ thị
+
+    // Cỡ chữ 18
+    customPlotTheta->xAxis->setLabelFont(font18);
+    customPlotTheta->yAxis->setLabelFont(font18);
+    customPlotTheta->xAxis->setTickLabelFont(font18);
+    customPlotTheta->yAxis->setTickLabelFont(font18);
+    customPlotTheta->legend->setFont(font18);
+
+    // tên đồ thị
+    customPlotTheta->plotLayout()->insertRow(0);
+    customPlotTheta->plotLayout()->addElement(0, 0, new QCPTextElement(customPlotTheta, "Graph Angle", font18));
+
+    // Thêm đồ thị
     customPlotTheta->addGraph();  // theta_now
     customPlotTheta->graph(0)->setPen(QPen(Qt::darkGreen));
     customPlotTheta->graph(0)->setName("theta_now");
@@ -144,11 +174,71 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Cấu hình trục
     customPlotTheta->xAxis->setLabel("Time (s)");
-    customPlotTheta->yAxis->setLabel("Angle (rad)");
+    customPlotTheta->yAxis->setLabel("Angle (π)");
     customPlotTheta->xAxis->setRange(0, 10);
     customPlotTheta->yAxis->setRange(-10, 10);  // Điều chỉnh theo hệ thống của bạn
     customPlotTheta->legend->setVisible(true);
     customPlotTheta->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
+
+    // //////////////////////////////// ĐỒ THỊ SPEED khi điều khiển vị trí ////////////////////////////////
+    customPlotSpeed = new QCustomPlot(ui->customPlotWidget4);
+    customPlotSpeed->setGeometry(ui->customPlotWidget4->rect());
+    customPlotSpeed->setOpenGl(true);
+
+    // Cỡ chữ 18
+    customPlotSpeed->xAxis->setLabelFont(font18);
+    customPlotSpeed->yAxis->setLabelFont(font18);
+    customPlotSpeed->xAxis->setTickLabelFont(font18);
+    customPlotSpeed->yAxis->setTickLabelFont(font18);
+    customPlotSpeed->legend->setFont(font18);
+
+    // tên đồ thị
+    customPlotSpeed->plotLayout()->insertRow(0);
+    customPlotSpeed->plotLayout()->addElement(0, 0, new QCPTextElement(customPlotSpeed, "Graph Speed", font18));
+
+    // Thêm đồ thị cho speed_now
+    customPlotSpeed->addGraph();  // graph(0) - speed_now
+    customPlotSpeed->graph(0)->setPen(QPen(Qt::blue));
+    customPlotSpeed->graph(0)->setName("speed_now");
+
+    // Cấu hình trục
+    customPlotSpeed->xAxis->setLabel("Time (s)");
+    customPlotSpeed->yAxis->setLabel("Speed(RPM)");
+    customPlotSpeed->xAxis->setRange(0, 10);
+    customPlotSpeed->yAxis->setRange(-10,10);  // điều chỉnh theo hệ thống
+    customPlotSpeed->legend->setVisible(true);
+    customPlotSpeed->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
+
+    // //////////////////////////////// ĐỒ THỊ SPEED khi điều khiển tốc độ ////////////////////////////////
+    customPlotSpeedGraph = new QCustomPlot(ui->customPlotWidget5);
+    customPlotSpeedGraph->setGeometry(ui->customPlotWidget5->rect());
+    customPlotSpeedGraph->setOpenGl(true);
+
+    // Cỡ chữ 18
+    customPlotSpeedGraph->xAxis->setLabelFont(font18);
+    customPlotSpeedGraph->yAxis->setLabelFont(font18);
+    customPlotSpeedGraph->xAxis->setTickLabelFont(font18);
+    customPlotSpeedGraph->yAxis->setTickLabelFont(font18);
+    customPlotSpeedGraph->legend->setFont(font18);
+
+    // tên đồ thị
+    customPlotSpeedGraph->plotLayout()->insertRow(0);
+    customPlotSpeedGraph->plotLayout()->addElement(0, 0, new QCPTextElement(customPlotSpeedGraph, "Graph Speed", font18));
+
+    customPlotSpeedGraph->addGraph();  // speed_now
+    customPlotSpeedGraph->graph(0)->setPen(QPen(Qt::blue));
+    customPlotSpeedGraph->graph(0)->setName("speed_now");
+
+    customPlotSpeedGraph->addGraph();  // speed_ref
+    customPlotSpeedGraph->graph(1)->setPen(QPen(Qt::darkRed, 1, Qt::DashLine));
+    customPlotSpeedGraph->graph(1)->setName("speed_ref");
+
+    customPlotSpeedGraph->xAxis->setLabel("Time (s)");
+    customPlotSpeedGraph->yAxis->setLabel("Speed(RPM)");
+    customPlotSpeedGraph->xAxis->setRange(0, 10);
+    customPlotSpeedGraph->yAxis->setRange(-100, 100);  // Tuỳ hệ thống bạn
+    customPlotSpeedGraph->legend->setVisible(true);
+    customPlotSpeedGraph->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
 
     // //////////////// TIMER CẬP NHẬT ĐỒ THỊ THETA /////////////////////////////////
     thetaPlotTimer = new QTimer(this);
@@ -163,6 +253,17 @@ MainWindow::MainWindow(QWidget *parent)
     // VoltageTimer = new QTimer(this);
     // connect(VoltageTimer, &QTimer::timeout, this, &MainWindow::updateVoltagePlot);
     // VoltageTimer->start(20); //
+    // //////////////// TIMER CẬP NHẬT ĐỒ THỊ SPEED ĐIỀU KHIỂN VỊ TRÍ /////////////////////////////////
+    speedPlotTimer = new QTimer(this);
+    connect(speedPlotTimer, &QTimer::timeout, this, &MainWindow::updateSpeedPlot);
+    speedPlotTimer->start(20);
+
+    // //////////////// TIMER CẬP NHẬT ĐỒ THỊ SPEED ĐIỀU KHIỂN TỐC ĐỘ /////////////////////////////////
+    speedGraphElapsedTimer.start();
+    speedGraphTimer = new QTimer(this);
+    connect(speedGraphTimer, &QTimer::timeout, this, &MainWindow::updateSpeedGraphPlot);
+    speedGraphTimer->start(20);
+
 }
 // /////////////////////////////// THE TA //////////////////////////////////////
 void MainWindow::updateThetaPlot()
@@ -208,53 +309,92 @@ void MainWindow::updateThetaPlot()
     customPlotTheta->graph(1)->setData(totalTimeTheta, totalThetaRef);
     customPlotTheta->replot();
 }
+// /////////////////////////////// SPEED ĐIỀU KHIỂN VỊ TRÍ  //////////////////////////////////////
+void MainWindow::updateSpeedPlot()
+{
+    QVector<QPointF> plotData;
+
+    speedBufferMutex.lock();
+    useSpeedBufferA = !useSpeedBufferA;
+    if (useSpeedBufferA) {
+        plotData = speedBufferB;
+        speedBufferB.clear();
+    } else {
+        plotData = speedBufferA;
+        speedBufferA.clear();
+    }
+    speedBufferMutex.unlock();
+
+    QVector<double> timeVec, speedNowVec;
+    for (const QPointF &point : plotData) {
+        timeVec.append(point.x());
+        speedNowVec.append(point.y());
+    }
+
+    totalTimeSpeed += timeVec;
+    totalSpeedNow += speedNowVec;
+
+    while (totalTimeSpeed.size() > 400) {
+        totalTimeSpeed.removeFirst();
+        totalSpeedNow.removeFirst();
+    }
+
+    if (!totalTimeSpeed.isEmpty()) {
+        double lastTime = totalTimeSpeed.last();
+        customPlotSpeed->xAxis->setRange(qMax(0.0, lastTime - 40), lastTime);
+    }
+
+    customPlotSpeed->graph(0)->setData(totalTimeSpeed, totalSpeedNow);
+    customPlotSpeed->replot();
+}
+
+// /////////////////////////////// SPEED ĐIỀU KHIỂN TỐC ĐỘ //////////////////////////////////////
+void MainWindow::updateSpeedGraphPlot()
+{
+    QVector<QPointF> plotData;
+
+    speedGraphBufferMutex.lock();
+    useSpeedGraphBufferA = !useSpeedGraphBufferA;
+    if (useSpeedGraphBufferA) {
+        plotData = speedGraphBufferB;
+        speedGraphBufferB.clear();
+    } else {
+        plotData = speedGraphBufferA;
+        speedGraphBufferA.clear();
+    }
+    speedGraphBufferMutex.unlock();
+
+    QVector<double> timeVec, speedNowVec, speedRefVec;
+
+    for (const QPointF &point : plotData) {
+        double timestamp = speedGraphElapsedTimer.elapsed() / 1000.0;
+        timeVec.append(timestamp);
+        speedRefVec.append(point.x());
+        speedNowVec.append(point.y());
+    }
+
+    totalTimeSpeedGraph += timeVec;
+    totalSpeedNowGraph += speedNowVec;
+    totalSpeedRefGraph += speedRefVec;
+
+    while (totalTimeSpeedGraph.size() > 400) {
+        totalTimeSpeedGraph.removeFirst();
+        totalSpeedNowGraph.removeFirst();
+        totalSpeedRefGraph.removeFirst();
+    }
+
+    if (!totalTimeSpeedGraph.isEmpty()) {
+        double lastTime = totalTimeSpeedGraph.last();
+        customPlotSpeedGraph->xAxis->setRange(qMax(0.0, lastTime - 40), lastTime);
+    }
+
+    customPlotSpeedGraph->graph(0)->setData(totalTimeSpeedGraph, totalSpeedNowGraph);
+    customPlotSpeedGraph->graph(1)->setData(totalTimeSpeedGraph, totalSpeedRefGraph);
+    customPlotSpeedGraph->replot();
+}
 
 // /////////////////////////////// DÒNG ĐIỆN //////////////////////////////////////
-// void MainWindow::updateCurrentPlot()
-// {
-//     QVector<QPointF> data;
-//     currentBufferMutex.lock();
-//     useCurrentBufferA = !useCurrentBufferA;
-//     if (useCurrentBufferA) {
-//         data = currentBufferB;
-//         currentBufferB.clear();
-//     } else {
-//         data = currentBufferA;
-//         currentBufferA.clear();
-//     }
-//     currentBufferMutex.unlock();
 
-//     QVector<double> idVec, iqVec, timeVec;
-//     for (const QPointF &point : data) {
-//         elapsedCurrent += 0.05;
-//         idVec.append(point.x());
-//         iqVec.append(point.y());
-//         timeVec.append(elapsedCurrent);
-//     }
-
-//     totalId += idVec;
-//     totalIq += iqVec;
-//     totalTimeCurrent += timeVec;
-
-//     while (totalTimeCurrent.size() > 200) {
-//         totalTimeCurrent.removeFirst();
-//         totalId.removeFirst();
-//         totalIq.removeFirst();
-//     }
-// customPlotTheta->xAxis->setRange(qMax(0.0, elapsedTheta - 10), elapsedTheta);
-//     customPlotCurrent->graph(0)->setData(totalTimeCurrent, totalId);
-//     customPlotCurrent->graph(1)->setData(totalTimeCurrent, totalIq);
-//     customPlotCurrent->xAxis->setRange(qMax(0.0, elapsedCurrent - 10), elapsedCurrent);
-//     customPlotCurrent->replot();
-
-//     // Xóa dữ liệu cũ để tránh quá tải bộ nhớ //giữ 1000 điểm gần nhất//
-//     int maxPoints = 1000;
-//     if (thetaTimeData.size() > maxPoints) {
-//         thetaTimeData.remove(0, thetaTimeData.size() - maxPoints);
-//         thetaNowData.remove(0, thetaNowData.size() - maxPoints);
-//         thetaRefData.remove(0, thetaRefData.size() - maxPoints);
-// }
-// }
 void MainWindow::updateCurrentPlot()
 {
     QVector<QPointF> data;
@@ -419,6 +559,7 @@ void MainWindow::on_pushButton_okPort_clicked()
         thetaTimer.start();
         currentTimerElapsed.start();
         voltageTimerElapsed.start();
+        speedGraphElapsedTimer.start();
     } else {
         QMessageBox::critical(this, "Error", "Failed to open " + selectedPort);
         ui->label_status->setText("Disconnected");
@@ -668,14 +809,34 @@ void MainWindow::handleSpecialValues(int index, int subindex, const QByteArray &
         thetaNowData.append(theta_now);
         thetaRefData.append(theta_ref);
 
-        float speed_now = convertToFloat(valueData.mid(4, 4));
-        ui->label_speed->setText(QString::number(speed_now, 'f', 4));
-
         QMutexLocker locker(&bufferMutex);
         if (useBufferA)
             bufferA.append(QPointF(theta_ref, theta_now));
         else
             bufferB.append(QPointF(theta_ref, theta_now));
+
+
+        // speed khi điều khiển vị trí
+        float speed_now = convertToFloat(valueData.mid(4, 4));
+        float speed_ref = speed_ref_global;
+        ui->label_speed->setText(QString::number(speed_now, 'f', 4));
+
+        double timestamp1 = thetaTimer.elapsed() / 1000.0;
+
+        totalTimeSpeed.append(timestamp1);
+        totalSpeedNow.append(speed_now);
+
+        QMutexLocker locker2(&speedBufferMutex);
+        if (useSpeedBufferA)
+            speedBufferA.append(QPointF(timestamp1, speed_now));
+        else
+            speedBufferB.append(QPointF(timestamp1, speed_now));
+
+        QMutexLocker locker3(&speedGraphBufferMutex);
+        if (useSpeedGraphBufferA)
+            speedGraphBufferA.append(QPointF(speed_ref, speed_now));
+        else
+            speedGraphBufferB.append(QPointF(speed_ref, speed_now));
     }
 
     else if (index == 0x02A0 && subindex == 0x0000 && valueData.size() >= 8) {
@@ -693,6 +854,8 @@ void MainWindow::handleSpecialValues(int index, int subindex, const QByteArray &
             currentBufferA.append(QPointF(id_tmp, iq_tmp));
         else
             currentBufferB.append(QPointF(id_tmp, iq_tmp));
+
+
     }
 
     // else if (index == 0x03A0 && subindex == 0x0000 && valueData.size() >= 8) {
@@ -710,6 +873,7 @@ void MainWindow::handleSpecialValues(int index, int subindex, const QByteArray &
     //         voltageBufferB.append(QPointF(vd, vq));
     // }
     if (index == 0x03A0 && subindex == 0x0000 && valueData.size() >= 6) {
+        if (autoUpdatePID) {
         // Đọc raw 2 byte theo little endian
         quint16 kp_raw = static_cast<quint16>(static_cast<quint8>(valueData[0]) | (static_cast<quint8>(valueData[1]) << 8));
         quint16 ki_raw = static_cast<quint16>(static_cast<quint8>(valueData[2]) | (static_cast<quint8>(valueData[3]) << 8));
@@ -728,10 +892,11 @@ void MainWindow::handleSpecialValues(int index, int subindex, const QByteArray &
         ui->ki_speed->setText(QString::number(ki, 'f', 2));
         ui->kd_speed->setText(QString::number(kd, 'f', 2));
 
-
+        }
     }
 
     if (index == 0x04A0 && subindex == 0x0000 && valueData.size() >= 6) {
+        if (autoUpdatePID) {
         // Đọc raw 2 byte theo Little Endian
         quint16 kp_raw = static_cast<quint8>(valueData[0]) | (static_cast<quint8>(valueData[1]) << 8);
         quint16 ki_raw = static_cast<quint8>(valueData[2]) | (static_cast<quint8>(valueData[3]) << 8);
@@ -746,6 +911,7 @@ void MainWindow::handleSpecialValues(int index, int subindex, const QByteArray &
         ui->kp_pos->setText(QString::number(kp, 'f', 2));
         ui->ki_pos->setText(QString::number(ki, 'f', 2));
         ui->kd_pos->setText(QString::number(kd, 'f', 2));
+        }
     }
 
 
@@ -866,6 +1032,7 @@ void MainWindow::on_pushButton_SPEED_clicked()
     memcpy(valueData.data(), &value, sizeof(float));
 
     appendToTableWidget(0x0184, 0x0000, valueData);
+    speed_ref_global= value;
 
 }
 
@@ -904,6 +1071,7 @@ void MainWindow::on_pushButton_Mode_Speed_clicked()
     memcpy(valueData.data(), &value, sizeof(float));
     //hiển thi lên bảng
     appendToTableWidget(0x0183, 0x0000, valueData);
+
 }
 
 
@@ -920,30 +1088,222 @@ void MainWindow::on_pushButton_Mode_Position_clicked()
     appendToTableWidget(0x0183, 0x0000, valueData);
 }
 
-// nút nhấn gửi pid speed
-void MainWindow::on_pushButton_sent_speed_clicked() {
-    float kp = ui->kp_speed->text().toFloat();
-    float ki = ui->ki_speed->text().toFloat();
-    float kd = ui->kd_speed->text().toFloat();
+// nút nhấn gửi PID
+void MainWindow::on_pushButton_send_PID_clicked() {
+    // Đọc PID speed từ UI
+    float kp_speed = ui->kp_speed->text().toFloat();
+    float ki_speed = ui->ki_speed->text().toFloat();
+    float kd_speed = ui->kd_speed->text().toFloat();
 
-    // Gửi PID Speed với index = 0x03A0
+    // Đọc PID position từ UI
+    float kp_pos = ui->kp_pos->text().toFloat();
+    float ki_pos = ui->ki_pos->text().toFloat();
+    float kd_pos = ui->kd_pos->text().toFloat();
+
     if (canWorker) {
-        canWorker->sendPIDFrame(0x03A0, kp, ki, kd);
+        // Gửi PID speed với index 181
+        canWorker->sendPIDFrame(0x0181, kp_speed, ki_speed, kd_speed);
+        // Hiển thị PID speed lên bảng
+        QByteArray speedData(6, 0);
+        qint16 kp_raw = static_cast<qint16>(kp_speed * 100);
+        qint16 ki_raw = static_cast<qint16>(ki_speed * 100);
+        qint16 kd_raw = static_cast<qint16>(kd_speed * 100);
+        speedData[0] = kp_raw & 0xFF;
+        speedData[1] = (kp_raw >> 8) & 0xFF;
+        speedData[2] = ki_raw & 0xFF;
+        speedData[3] = (ki_raw >> 8) & 0xFF;
+        speedData[4] = kd_raw & 0xFF;
+        speedData[5] = (kd_raw >> 8) & 0xFF;
+        appendToTableWidget(0x0181, 0x0000, speedData);
+
+        // Gửi PID position với index 182 (0x00B6)
+        canWorker->sendPIDFrame(0x0182, kp_pos, ki_pos, kd_pos);
     }
 }
 
-// nút nhấn gửi pid pos
-void MainWindow::on_pushButton_send_pos_clicked() {
-    float kp = ui->kp_pos->text().toFloat();
-    float ki = ui->ki_pos->text().toFloat();
-    float kd = ui->kd_pos->text().toFloat();
+// nút nhấn gửi mode change PID
+    void MainWindow::on_pushButton_change_PID_clicked()
+{
+    float value = 1.0f;
+    autoUpdatePID = false; // Tắt cập nhật tự động
+    emit sendCANCommand(0x0185, 0x0000, value);  // Gửi float
 
-    // Gửi PID Position với index = 0x04A0
-    if (canWorker) {
-        canWorker->sendPIDFrame(0x04A0, kp, ki, kd);
+    // Tạo 8 byte để hiển thị lên bảng
+    QByteArray valueData(8, 0);
+    memcpy(valueData.data(), &value, sizeof(float));
+    //hiển thi lên bảng
+    appendToTableWidget(0x0185, 0x0000, valueData);
+
+}
+
+
+// nút nhấn refresh PID
+void MainWindow::on_pushButton_refresh_PID_clicked()
+{
+    float value = 0.0f;
+    autoUpdatePID = true;  // Bật lại cập nhật
+    emit sendCANCommand(0x0185, 0x0000, value);  // Gửi float
+
+    // Tạo 8 byte để hiển thị lên bảng
+    QByteArray valueData(8, 0);
+    memcpy(valueData.data(), &value, sizeof(float));
+    //hiển thi lên bảng
+    appendToTableWidget(0x0185, 0x0000, valueData);
+
+}
+// // nút nhấn gửi pid speed
+// void MainWindow::on_pushButton_sent_speed_clicked() {
+//     float kp = ui->kp_speed->text().toFloat();
+//     float ki = ui->ki_speed->text().toFloat();
+//     float kd = ui->kd_speed->text().toFloat();
+
+//     // Gửi PID Speed với index = 0x03A0
+//     if (canWorker) {
+//         canWorker->sendPIDFrame(0x03A0, kp, ki, kd);
+//     }
+// }
+
+// // nút nhấn gửi pid pos
+// void MainWindow::on_pushButton_send_pos_clicked() {
+//     float kp = ui->kp_pos->text().toFloat();
+//     float ki = ui->ki_pos->text().toFloat();
+//     float kd = ui->kd_pos->text().toFloat();
+
+//     // Gửi PID Position với index = 0x04A0
+//     if (canWorker) {
+//         canWorker->sendPIDFrame(0x04A0, kp, ki, kd);
+//     }
+// }
+
+
+void MainWindow::on_save_plot_speed_clicked(){
+    QString fileName = QFileDialog::getSaveFileName(
+        this,
+        "Lưu đồ thị tốc độ",
+        "",
+        "PNG Files (*.png);;JPEG Files (*.jpg);;PDF Files (*.pdf)"
+        );
+
+    if (!fileName.isEmpty()) {
+        if (fileName.endsWith(".pdf", Qt::CaseInsensitive)) {
+            customPlotSpeedGraph->savePdf(fileName);
+        } else if (fileName.endsWith(".jpg", Qt::CaseInsensitive) || fileName.endsWith(".jpeg", Qt::CaseInsensitive)) {
+            customPlotSpeedGraph->saveJpg(fileName, 1200, 800);
+        } else if (fileName.endsWith(".png", Qt::CaseInsensitive)) {
+            customPlotSpeedGraph->savePng(fileName, 1200, 800);
+        } else {
+            // Nếu người dùng không nhập đuôi hoặc đuôi khác thì mặc định thêm .png
+            customPlotSpeedGraph->savePng(fileName + ".png", 1200, 800);
+        }
+    }
+}
+void MainWindow::on_save_plot_current_clicked(){
+    QString fileName = QFileDialog::getSaveFileName(
+        this,
+        "Lưu đồ thị tốc độ",
+        "",
+        "PNG Files (*.png);;JPEG Files (*.jpg);;PDF Files (*.pdf)"
+        );
+
+    if (!fileName.isEmpty()) {
+        if (fileName.endsWith(".pdf", Qt::CaseInsensitive)) {
+            customPlotCurrent->savePdf(fileName);
+        } else if (fileName.endsWith(".jpg", Qt::CaseInsensitive) || fileName.endsWith(".jpeg", Qt::CaseInsensitive)) {
+            customPlotCurrent->saveJpg(fileName, 1200, 800);
+        } else if (fileName.endsWith(".png", Qt::CaseInsensitive)) {
+            customPlotCurrent->savePng(fileName, 1200, 800);
+        } else {
+            // Nếu người dùng không nhập đuôi hoặc đuôi khác thì mặc định thêm .png
+            customPlotCurrent->savePng(fileName + ".png", 1200, 800);
+        }
     }
 }
 
+// void MainWindow::on_save_plot_angle_clicked() {
+//     QString fileName = QFileDialog::getSaveFileName(
+//         this,
+//         "Lưu đồ thị tốc độ + góc",
+//         "",
+//         "PNG Files (*.png);;JPEG Files (*.jpg)"
+//         );
+
+//     if (fileName.isEmpty())
+//         return;
+
+//     // Kích thước mỗi đồ thị
+//     QSize plotSize(1200, 400);  // mỗi đồ thị cao 400px
+//     QSize totalSize(plotSize.width(), plotSize.height() * 2);  // tổng cộng 2 đồ thị
+
+//     QPixmap finalPixmap(totalSize);
+//     finalPixmap.fill(Qt::white); // Nền trắng
+
+//     QPainter painter(&finalPixmap);
+//     customPlotTheta->resize(plotSize);
+//     customPlotTheta->replot(); // Đảm bảo đã vẽ xong
+//     customPlotTheta->render(&painter, QPoint(0, 0), QRegion(), QWidget::DrawChildren);
+
+//     customPlotSpeed->resize(plotSize);
+//     customPlotSpeed->replot(); // Đảm bảo đã vẽ xong
+//     customPlotSpeed->render(&painter, QPoint(0, plotSize.height()), QRegion(), QWidget::DrawChildren);
+
+//     painter.end();
+
+//     bool success = false;
+
+//     if (fileName.endsWith(".jpg", Qt::CaseInsensitive) || fileName.endsWith(".jpeg", Qt::CaseInsensitive)) {
+//         success = finalPixmap.save(fileName, "JPG");
+//     } else if (fileName.endsWith(".png", Qt::CaseInsensitive)) {
+//         success = finalPixmap.save(fileName, "PNG");
+//     } else {
+//         // Mặc định PNG nếu không rõ đuôi
+//         success = finalPixmap.save(fileName + ".png", "PNG");
+//     }
+
+//     if (success) {
+//         QMessageBox::information(this, "Thành công", "Đã lưu 2 đồ thị vào file:\n" + fileName);
+//     } else {
+//         QMessageBox::critical(this, "Lỗi", "Không thể lưu file.");
+//     }
+// }
+
+void MainWindow::on_save_plot_angle_clicked() {
+    QString fileName = QFileDialog::getSaveFileName(
+        this,
+        "Lưu đồ thị góc và tốc độ",
+        "",
+        "PNG Files (*.png);;JPEG Files (*.jpg)"
+        );
+
+    if (fileName.isEmpty())
+        return;
+
+    // Kích thước mỗi đồ thị
+    int width = 1200;
+    int height = 400;
+
+    // Vẽ mỗi đồ thị thành QPixmap riêng (không resize widget thật)
+    QPixmap thetaPixmap = customPlotTheta->toPixmap(width, height);
+    QPixmap speedPixmap = customPlotSpeed->toPixmap(width, height);
+
+    // Tạo ảnh kết hợp
+    QPixmap finalPixmap(width, height * 2);
+    finalPixmap.fill(Qt::white);
+
+    QPainter painter(&finalPixmap);
+    painter.drawPixmap(0, 0, thetaPixmap);
+    painter.drawPixmap(0, height, speedPixmap);
+    painter.end();
+
+    bool success = false;
+
+    if (fileName.endsWith(".jpg", Qt::CaseInsensitive) || fileName.endsWith(".jpeg", Qt::CaseInsensitive)) {
+        success = finalPixmap.save(fileName, "JPG");
+    } else if (fileName.endsWith(".png", Qt::CaseInsensitive)) {
+        success = finalPixmap.save(fileName, "PNG");
+    } else {
+        success = finalPixmap.save(fileName + ".png", "PNG");
+    }
+}
 
 // void MainWindow::loadCANDefinitions()
 // {
