@@ -44,6 +44,7 @@ CANopenNode_STM32/CO_app_STM32.o: ../CANopenNode_STM32/CO_app_STM32.c \
  D:/CANOPEN/STM32/CANopenNode/301/CO_Emergency.h \
  D:/CANOPEN/STM32/CANopenNode/301/CO_HBconsumer.h \
  D:/CANOPEN/STM32/CANopenNode/301/CO_NMT_Heartbeat.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_Node_Guarding.h \
  D:/CANOPEN/STM32/CANopenNode/301/CO_Emergency.h \
  D:/CANOPEN/STM32/CANopenNode/301/CO_SDOserver.h \
  D:/CANOPEN/STM32/CANopenNode/301/CO_SDOclient.h \
@@ -113,6 +114,7 @@ D:/CANOPEN/STM32/CANopenNode/301/CO_ODinterface.h:
 D:/CANOPEN/STM32/CANopenNode/301/CO_Emergency.h:
 D:/CANOPEN/STM32/CANopenNode/301/CO_HBconsumer.h:
 D:/CANOPEN/STM32/CANopenNode/301/CO_NMT_Heartbeat.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_Node_Guarding.h:
 D:/CANOPEN/STM32/CANopenNode/301/CO_Emergency.h:
 D:/CANOPEN/STM32/CANopenNode/301/CO_SDOserver.h:
 D:/CANOPEN/STM32/CANopenNode/301/CO_SDOclient.h:

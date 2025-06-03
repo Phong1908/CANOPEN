@@ -312,10 +312,9 @@ prv_send_can_message(CO_CANmodule_t* CANmodule, CO_CANtx_t* buffer) {
     /* Check if TX FIFO is ready to accept more messages */
     if (HAL_CAN_GetTxMailboxesFreeLevel(((CANopenNodeSTM32*)CANmodule->CANptr)->CANHandle) > 0) {
         /*
-    		 * RTR flag is part of identifier value
-    		 * hence it needs to be properly decoded
-    		 */
-    	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_SET);
+         * RTR flag is part of identifier value
+         * hence it needs to be properly decoded
+         */
         tx_hdr.ExtId = 0u;
         tx_hdr.IDE = CAN_ID_STD;
         tx_hdr.DLC = buffer->DLC;
@@ -328,7 +327,6 @@ prv_send_can_message(CO_CANmodule_t* CANmodule, CO_CANtx_t* buffer) {
         success = HAL_CAN_AddTxMessage(((CANopenNodeSTM32*)CANmodule->CANptr)->CANHandle, &tx_hdr, buffer->data,
                                        &TxMailboxNum)
                   == HAL_OK;
-        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_RESET);
     }
 #endif
     return success;
@@ -545,13 +543,11 @@ prv_read_can_received_msg(CAN_HandleTypeDef* hcan, uint32_t fifo, uint32_t fifo_
     /* Read received message from FIFO */
     if (HAL_CAN_GetRxMessage(hcan, fifo, &rx_hdr, rcvMsg.data) != HAL_OK) {
         return;
-        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
     }
     /* Setup identifier (with RTR) and length */
     rcvMsg.ident = rx_hdr.StdId | (rx_hdr.RTR == CAN_RTR_REMOTE ? FLAG_RTR : 0x00);
     rcvMsg.dlc = rx_hdr.DLC;
     rcvMsgIdent = rcvMsg.ident;
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
 #endif
 
     /*
@@ -637,12 +633,10 @@ HAL_FDCAN_TxBufferCompleteCallback(FDCAN_HandleTypeDef* hfdcan, uint32_t BufferI
                     buffer->bufferFull = false;
                     CANModule_local->CANtxCount--;
                     CANModule_local->bufferInhibitFlag = buffer->syncFlag;
-                }
+                } else {
+                    break;  // if we could not send the message, break out of the loop (the tx buffers are full)
+		}
             }
-        }
-        /* Clear counter if no more messages */
-        if (i == 0U) {
-            CANModule_local->CANtxCount = 0U;
         }
         CO_UNLOCK_CAN_SEND(CANModule_local);
     }
@@ -700,11 +694,9 @@ CO_CANinterrupt_TX(CO_CANmodule_t* CANmodule, uint32_t MailboxNumber) {
                     CANmodule->CANtxCount--;
                     CANmodule->bufferInhibitFlag = buffer->syncFlag;
                 }
+                else
+                    break;  // if we could not send the message, break out of the loop (the tx buffers are full)
             }
-        }
-        /* Clear counter if no more messages */
-        if (i == 0U) {
-            CANmodule->CANtxCount = 0U;
         }
         CO_UNLOCK_CAN_SEND(CANmodule);
     }

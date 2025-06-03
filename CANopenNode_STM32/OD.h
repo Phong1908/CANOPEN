@@ -16,7 +16,7 @@
 
         Created:      11/23/2020 6:00:00 PM
         Created By:   
-        Modified:     4/18/2025 11:51:02 AM
+        Modified:     6/3/2025 3:20:13 PM
         Modified By:  
 
     Device Info:
@@ -44,8 +44,8 @@
 #define OD_CNT_HB_PROD 1
 #define OD_CNT_SDO_SRV 1
 #define OD_CNT_SDO_CLI 1
-#define OD_CNT_RPDO 1
-#define OD_CNT_TPDO 3
+#define OD_CNT_RPDO 6
+#define OD_CNT_TPDO 4
 
 
 /*******************************************************************************
@@ -91,9 +91,58 @@ typedef struct {
         uint8_t transmissionType;
     } x1400_RPDOCommunicationParameter;
     struct {
+        uint8_t maxSub_index;
+        uint32_t COB_IDUsedByRPDO;
+        uint8_t transmissionType;
+    } x1401_RPDOCommunicationParameter;
+    struct {
+        uint8_t maxSub_index;
+        uint32_t COB_IDUsedByRPDO;
+        uint8_t transmissionType;
+    } x1402_RPDOCommunicationParameter;
+    struct {
+        uint8_t maxSub_index;
+        uint32_t COB_IDUsedByRPDO;
+        uint8_t transmissionType;
+    } x1403_RPDOCommunicationParameter;
+    struct {
+        uint8_t maxSub_index;
+        uint32_t COB_IDUsedByRPDO;
+        uint8_t transmissionType;
+    } x1404_RPDOCommunicationParameter;
+    struct {
+        uint8_t maxSub_index;
+        uint32_t COB_IDUsedByRPDO;
+        uint8_t transmissionType;
+    } x1405_RPDOCommunicationParameter;
+    struct {
         uint8_t numberOfMappedObjects;
         uint32_t mappedObject_1;
     } x1600_RPDOMappingParameter;
+    struct {
+        uint8_t numberOfMappedObjects;
+        uint32_t mappedObject_1;
+        uint32_t mappedObject_2;
+        uint32_t mappedObject_3;
+    } x1601_RPDOMappingParameter;
+    struct {
+        uint8_t numberOfMappedObjects;
+        uint32_t mappedObject_1;
+        uint32_t mappedObject_2;
+        uint32_t mappedObject_3;
+    } x1602_RPDOMappingParameter;
+    struct {
+        uint8_t numberOfMappedObjects;
+        uint32_t mappedObject_1;
+    } x1603_RPDOMappingParameter;
+    struct {
+        uint8_t numberOfMappedObjects;
+        uint32_t mappedObject_1;
+    } x1604_RPDOMappingParameter;
+    struct {
+        uint8_t numberOfMappedObjects;
+        uint32_t mappedObject_1;
+    } x1605_RPDOMappingParameter;
     struct {
         uint8_t maxSub_index;
         uint32_t COB_IDUsedByTPDO;
@@ -122,27 +171,68 @@ typedef struct {
         uint8_t SYNCStartValue;
     } x1802_TPDOCommunicationParameter;
     struct {
+        uint8_t maxSub_index;
+        uint32_t COB_IDUsedByTPDO;
+        uint8_t transmissionType;
+        uint16_t inhibitTime;
+        uint8_t compatibilityEntry;
+        uint16_t eventTimer;
+        uint8_t SYNCStartValue;
+    } x1803_TPDOCommunicationParameter;
+    struct {
         uint8_t numberOfMappedObjects;
         uint32_t mappedObject_1;
+        uint32_t mappedObject_2;
     } x1A00_TPDOMappingParameter;
     struct {
         uint8_t numberOfMappedObjects;
         uint32_t mappedObject_1;
+        uint32_t mappedObject_2;
     } x1A01_TPDOMappingParameter;
     struct {
         uint8_t numberOfMappedObjects;
         uint32_t mappedObject_1;
+        uint32_t mappedObject_2;
+        uint32_t mappedObject_3;
     } x1A02_TPDOMappingParameter;
+    struct {
+        uint8_t numberOfMappedObjects;
+        uint32_t mappedObject_1;
+        uint32_t mappedObject_2;
+        uint32_t mappedObject_3;
+    } x1A03_TPDOMappingParameter;
     struct {
         uint8_t highestSub_indexSupported;
         uint32_t rx_theta;
+        uint32_t rx_speed;
+        uint32_t rx_mode;
+        uint32_t rx_change_PID;
     } x2000_RPDO;
     struct {
         uint8_t highestSub_indexSupported;
-        float32_t i_d;
-        float32_t i_q;
+        float32_t id;
+        float32_t iq;
         float32_t theta_now;
+        float32_t speed_now;
     } x2200_TPDO;
+    struct {
+        uint8_t highestSub_indexSupported;
+        uint16_t kp_speed;
+        uint16_t ki_speed;
+        uint16_t kd_speed;
+        uint16_t kp_pos;
+        uint16_t ki_pos;
+        uint16_t kd_pos;
+    } x2400_TPDO_PID;
+    struct {
+        uint8_t highestSub_indexSupported;
+        uint16_t rx_kp_speed;
+        uint16_t rx_ki_speed;
+        uint16_t rx_kd_speed;
+        uint16_t rx_kp_pos;
+        uint16_t rx_ki_pos;
+        uint16_t rx_kd_pos;
+    } x2600_RPDO_PID;
 } OD_PERSIST_COMM_t;
 
 typedef struct {
@@ -156,7 +246,6 @@ typedef struct {
         uint32_t COB_IDClientToServerRx;
         uint32_t COB_IDServerToClientTx;
     } x1200_SDOServerParameter;
-    uint32_t x6000_velocity;
 } OD_RAM_t;
 
 #ifndef OD_ATTR_PERSIST_COMM
@@ -196,16 +285,29 @@ extern OD_ATTR_OD OD_t *OD;
 #define OD_ENTRY_H1200 &OD->list[15]
 #define OD_ENTRY_H1280 &OD->list[16]
 #define OD_ENTRY_H1400 &OD->list[17]
-#define OD_ENTRY_H1600 &OD->list[18]
-#define OD_ENTRY_H1800 &OD->list[19]
-#define OD_ENTRY_H1801 &OD->list[20]
-#define OD_ENTRY_H1802 &OD->list[21]
-#define OD_ENTRY_H1A00 &OD->list[22]
-#define OD_ENTRY_H1A01 &OD->list[23]
-#define OD_ENTRY_H1A02 &OD->list[24]
-#define OD_ENTRY_H2000 &OD->list[25]
-#define OD_ENTRY_H2200 &OD->list[26]
-#define OD_ENTRY_H6000 &OD->list[27]
+#define OD_ENTRY_H1401 &OD->list[18]
+#define OD_ENTRY_H1402 &OD->list[19]
+#define OD_ENTRY_H1403 &OD->list[20]
+#define OD_ENTRY_H1404 &OD->list[21]
+#define OD_ENTRY_H1405 &OD->list[22]
+#define OD_ENTRY_H1600 &OD->list[23]
+#define OD_ENTRY_H1601 &OD->list[24]
+#define OD_ENTRY_H1602 &OD->list[25]
+#define OD_ENTRY_H1603 &OD->list[26]
+#define OD_ENTRY_H1604 &OD->list[27]
+#define OD_ENTRY_H1605 &OD->list[28]
+#define OD_ENTRY_H1800 &OD->list[29]
+#define OD_ENTRY_H1801 &OD->list[30]
+#define OD_ENTRY_H1802 &OD->list[31]
+#define OD_ENTRY_H1803 &OD->list[32]
+#define OD_ENTRY_H1A00 &OD->list[33]
+#define OD_ENTRY_H1A01 &OD->list[34]
+#define OD_ENTRY_H1A02 &OD->list[35]
+#define OD_ENTRY_H1A03 &OD->list[36]
+#define OD_ENTRY_H2000 &OD->list[37]
+#define OD_ENTRY_H2200 &OD->list[38]
+#define OD_ENTRY_H2400 &OD->list[39]
+#define OD_ENTRY_H2600 &OD->list[40]
 
 
 /*******************************************************************************
@@ -229,16 +331,29 @@ extern OD_ATTR_OD OD_t *OD;
 #define OD_ENTRY_H1200_SDOServerParameter &OD->list[15]
 #define OD_ENTRY_H1280_SDOClientParameter &OD->list[16]
 #define OD_ENTRY_H1400_RPDOCommunicationParameter &OD->list[17]
-#define OD_ENTRY_H1600_RPDOMappingParameter &OD->list[18]
-#define OD_ENTRY_H1800_TPDOCommunicationParameter &OD->list[19]
-#define OD_ENTRY_H1801_TPDOCommunicationParameter &OD->list[20]
-#define OD_ENTRY_H1802_TPDOCommunicationParameter &OD->list[21]
-#define OD_ENTRY_H1A00_TPDOMappingParameter &OD->list[22]
-#define OD_ENTRY_H1A01_TPDOMappingParameter &OD->list[23]
-#define OD_ENTRY_H1A02_TPDOMappingParameter &OD->list[24]
-#define OD_ENTRY_H2000_RPDO &OD->list[25]
-#define OD_ENTRY_H2200_TPDO &OD->list[26]
-#define OD_ENTRY_H6000_velocity &OD->list[27]
+#define OD_ENTRY_H1401_RPDOCommunicationParameter &OD->list[18]
+#define OD_ENTRY_H1402_RPDOCommunicationParameter &OD->list[19]
+#define OD_ENTRY_H1403_RPDOCommunicationParameter &OD->list[20]
+#define OD_ENTRY_H1404_RPDOCommunicationParameter &OD->list[21]
+#define OD_ENTRY_H1405_RPDOCommunicationParameter &OD->list[22]
+#define OD_ENTRY_H1600_RPDOMappingParameter &OD->list[23]
+#define OD_ENTRY_H1601_RPDOMappingParameter &OD->list[24]
+#define OD_ENTRY_H1602_RPDOMappingParameter &OD->list[25]
+#define OD_ENTRY_H1603_RPDOMappingParameter &OD->list[26]
+#define OD_ENTRY_H1604_RPDOMappingParameter &OD->list[27]
+#define OD_ENTRY_H1605_RPDOMappingParameter &OD->list[28]
+#define OD_ENTRY_H1800_TPDOCommunicationParameter &OD->list[29]
+#define OD_ENTRY_H1801_TPDOCommunicationParameter &OD->list[30]
+#define OD_ENTRY_H1802_TPDOCommunicationParameter &OD->list[31]
+#define OD_ENTRY_H1803_TPDOCommunicationParameter &OD->list[32]
+#define OD_ENTRY_H1A00_TPDOMappingParameter &OD->list[33]
+#define OD_ENTRY_H1A01_TPDOMappingParameter &OD->list[34]
+#define OD_ENTRY_H1A02_TPDOMappingParameter &OD->list[35]
+#define OD_ENTRY_H1A03_TPDOMappingParameter &OD->list[36]
+#define OD_ENTRY_H2000_RPDO &OD->list[37]
+#define OD_ENTRY_H2200_TPDO &OD->list[38]
+#define OD_ENTRY_H2400_TPDO_PID &OD->list[39]
+#define OD_ENTRY_H2600_RPDO_PID &OD->list[40]
 
 
 /*******************************************************************************

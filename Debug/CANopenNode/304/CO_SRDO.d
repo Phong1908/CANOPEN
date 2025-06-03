@@ -1,5 +1,6 @@
 CANopenNode/304/CO_SRDO.o: ../CANopenNode/304/CO_SRDO.c \
  D:/CANOPEN/STM32/CANopenNode/304/CO_SRDO.h \
+ D:/CANOPEN/STM32/CANopenNode/301/CO_Emergency.h \
  D:/CANOPEN/STM32/CANopenNode/301/CO_driver.h \
  D:/CANOPEN/STM32/CANopenNode/301/CO_config.h \
  D:/CANOPEN/STM32/CANopenNode_STM32/CO_driver_target.h ../Core/Inc/main.h \
@@ -36,11 +37,9 @@ CANopenNode/304/CO_SRDO.o: ../CANopenNode/304/CO_SRDO.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- D:/CANOPEN/STM32/CANopenNode/301/CO_SDOserver.h \
- D:/CANOPEN/STM32/CANopenNode/301/CO_ODinterface.h \
- D:/CANOPEN/STM32/CANopenNode/301/CO_Emergency.h \
- D:/CANOPEN/STM32/CANopenNode/301/CO_NMT_Heartbeat.h
+ D:/CANOPEN/STM32/CANopenNode/301/CO_ODinterface.h
 D:/CANOPEN/STM32/CANopenNode/304/CO_SRDO.h:
+D:/CANOPEN/STM32/CANopenNode/301/CO_Emergency.h:
 D:/CANOPEN/STM32/CANopenNode/301/CO_driver.h:
 D:/CANOPEN/STM32/CANopenNode/301/CO_config.h:
 D:/CANOPEN/STM32/CANopenNode_STM32/CO_driver_target.h:
@@ -78,7 +77,4 @@ D:/CANOPEN/STM32/CANopenNode_STM32/CO_driver_target.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
-D:/CANOPEN/STM32/CANopenNode/301/CO_SDOserver.h:
 D:/CANOPEN/STM32/CANopenNode/301/CO_ODinterface.h:
-D:/CANOPEN/STM32/CANopenNode/301/CO_Emergency.h:
-D:/CANOPEN/STM32/CANopenNode/301/CO_NMT_Heartbeat.h:
