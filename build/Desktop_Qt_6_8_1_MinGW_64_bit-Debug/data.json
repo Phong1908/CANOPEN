@@ -2,7 +2,8 @@
         {
             "index": "01A0",
             "subindex": "0000",
-            "name": "theta_actual_value",
+            "name": "theta and speed_actual_value",
+            "attribute": "T",
             "type": "REAL32"
 
         },
@@ -10,837 +11,984 @@
             "index": "02A0",
             "subindex": "0000",
             "name": "current_actual_value",
+            "attribute": "T",
             "type": "REAL32"
         },
         {
             "index": "03A0",
             "subindex": "0000",
-            "name": "voltage_actual_value",
+            "name": "PIDspeed_actual_value",
+            "attribute": "T",
+            "type": "REAL32"
+        },
+        {
+            "index": "04A0",
+            "subindex": "0000",
+            "name": "PIDpos_actual_value",
+            "attribute": "T",
             "type": "REAL32"
         },
         {
             "index": "0720",
             "subindex": "0000",
             "name": "Producer heartbeat time",
+            "attribute": "RW",
             "type": "INT32"
         },
         {
             "index": "1000",
             "subindex": "0000",
             "name": "Device type",
+            "attribute": "RO",
             "type": "UINT32"
         },
         {
             "index": "1001",
             "subindex": "0000",
             "name": "Error register",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "1008",
             "subindex": "0000",
             "name": "Device name",
+            "attribute": "RO",
             "type": "STRING"
         },
         {
             "index": "1009",
             "subindex": "0000",
             "name": "Hardware version",
+            "attribute": "RO",
             "type": "STRING"
         },
         {
             "index": "1018",
             "subindex": "0000",
             "name": "Identity SubIndex 000",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "1018",
             "subindex": "0001",
             "name": "Identity Vendor ID",
+            "attribute": "RO",
             "type": "UINT32"
         },
         {
             "index": "1018",
             "subindex": "0002",
             "name": "Identity Product code",
+            "attribute": "RO",
             "type": "UINT32"
         },
         {
             "index": "1018",
             "subindex": "0003",
             "name": "Identity Revision",
+            "attribute": "RO",
             "type": "UINT32"
         },
         {
             "index": "1018",
             "subindex": "0004",
             "name": "Identity Serial number",
+            "attribute": "RO",
             "type": "UINT32"
         },
         {
             "index": "10F1",
             "subindex": "0000",
             "name": "Error Settings SubIndex 000",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "10F1",
             "subindex": "0001",
             "name": "Error Settings Local Error Reaction",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "10F1",
             "subindex": "0002",
             "name": "Error Settings Sync Error Counter Limit",
+            "attribute": "RW",
             "type": "UINT16"
         },
         {
             "index": "1600",
             "subindex": "0000",
             "name": "Drive RxPDO SubIndex 000",
+            "attribute": "RW",
             "type": "UINT8"
         },
         {
             "index": "1600",
             "subindex": "0001",
             "name": "Drive RxPDO Control Word",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1600",
             "subindex": "0002",
             "name": "Drive RxPDO Target Position",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1600",
             "subindex": "0003",
             "name": "Drive RxPDO Target Velocity",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1600",
             "subindex": "0004",
             "name": "Drive RxPDO Target Torque",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1600",
             "subindex": "0005",
             "name": "Drive RxPDO Mode Of Operation",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1601",
             "subindex": "0000",
             "name": "csp RxPDO SubIndex 000",
+            "attribute": "RW",
             "type": "UINT8"
         },
         {
             "index": "1601",
             "subindex": "0001",
             "name": "csp RxPDO Control Word",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1601",
             "subindex": "0002",
             "name": "csp RxPDO Target Position",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1602",
             "subindex": "0000",
             "name": "csv RxPDO SubIndex 000",
+            "attribute": "RW",
             "type": "UINT8"
         },
         {
             "index": "1602",
             "subindex": "0001",
             "name": "csv RxPDO Control Word",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1602",
             "subindex": "0001",
             "name": "csv RxPDO Mapping Entry 2",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1A00",
             "subindex": "0000",
             "name": "Drive TxPDO SubIndex 000",
+            "attribute": "RW",
             "type": "UINT8"
         },
         {
             "index": "1A00",
             "subindex": "0001",
             "name": "Drive TxPDO Status Word",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1A00",
             "subindex": "0002",
             "name": "Drive TxPDO Position Actual Value",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1A00",
             "subindex": "0003",
             "name": "Drive TxPDO Velocity Actual Value",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1A00",
             "subindex": "0004",
             "name": "Drive TxPDO Torque Actual Value",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1A00",
             "subindex": "0005",
             "name": "Drive TxPDO Mode Of Operation Display",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1A01",
             "subindex": "0000",
             "name": "csp TxPDO SubIndex 000",
+            "attribute": "RW",
             "type": "UINT8"
         },
         {
             "index": "1A01",
             "subindex": "0001",
             "name": "csp TxPDO Status Word",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1A01",
             "subindex": "0002",
             "name": "csp TxPDO Position Actual Value",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1A02",
             "subindex": "0000",
             "name": "csv TxPDO SubIndex 000",
+            "attribute": "RW",
             "type": "UINT8"
         },
         {
             "index": "1A02",
             "subindex": "0001",
             "name": "csv TxPDO Status Word",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1A02",
             "subindex": "0002",
             "name": "csv TxPDO Mapping Entry 2",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1C00",
             "subindex": "0000",
             "name": "Sync manager type SubIndex 000",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "1C00",
             "subindex": "0001",
             "name": "Sync manager type SubIndex 001",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "1C00",
             "subindex": "0002",
             "name": "Sync manager type SubIndex 002",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "1C00",
             "subindex": "0003",
             "name": "Sync manager type SubIndex 003",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "1C00",
             "subindex": "0004",
             "name": "Sync manager type SubIndex 004",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "1C12",
             "subindex": "0000",
             "name": "Sync Manager 2 PDO Assignment",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "1C12",
             "subindex": "0001",
             "name": "Sync Manager 2 PDO SubIndex 000",
+            "attribute": "RO",
             "type": "UINT16"
         },
         {
             "index": "1C13",
             "subindex": "0000",
             "name": "Sync Manager 3 PDO Assignment",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "1C13",
             "subindex": "0001",
             "name": "Sync Manager 3 PDO SubIndex 000",
+            "attribute": "RO",
             "type": "UINT16"
         },
         {
             "index": "1C32",
             "subindex": "0000",
             "name": "SM output parameter SubIndex 000",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "1C32",
             "subindex": "0001",
             "name": "SM output parameter Synchronization Type",
+            "attribute": "RO",
             "type": "UINT16"
         },
         {
             "index": "1C32",
             "subindex": "0002",
             "name": "SM output parameter Cycle Time",
+            "attribute": "RO",
             "type": "UINT32"
         },
         {
             "index": "1C32",
             "subindex": "0003",
             "name": "SM output parameter SubIndex 003",
+            "attribute": " ",
             "type": " "
         },
         {
             "index": "1C32",
             "subindex": "0004",
             "name": "SM output parameter Synchronization Types ",
+            "attribute": "RO",
             "type": "UINT16"
         },
         {
             "index": "1C32",
             "subindex": "0005",
             "name": "SM output parameter supported",
+            "attribute": "RO",
             "type": "UINT32"
         },
         {
             "index": "1C32",
             "subindex": "0006",
             "name": "SM output parameter Minimum Cycle Time",
+            "attribute": "RO",
             "type": "UINT32"
         },
         {
             "index": "1C32",
             "subindex": "0007",
             "name": "SM output parameter Calc and Copy Time",
+            "attribute": " ",
             "type": " "
         },
         {
             "index": "1C32",
             "subindex": "0008",
             "name": "SM output parameter SubIndex 007",
+            "attribute": "RW",
             "type": "UINT16"
         },
         {
             "index": "1C32",
             "subindex": "0009",
             "name": "SM output parameter Get Cycle Time",
+            "attribute": "RO",
             "type": "UINT32"
         },
         {
             "index": "1C32",
             "subindex": "000A",
             "name": "SM output parameter Delay Time",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1C32",
             "subindex": "000B",
             "name": "SM output parameter Sync0 Cycle Time",
+            "attribute": "RO",
             "type": "UINT16"
         },
         {
             "index": "1C32",
             "subindex": "000C",
             "name": "SM output parameter SM-Event Missed",
+            "attribute": "RO",
             "type": "UINT16"
         },
         {
             "index": "1C32",
             "subindex": "000D",
             "name": "SM output parameter Cycle Time Too Small",
+            "attribute": " ",
             "type": " "
         },
         {
             "index": "1C32",
             "subindex": "00E",
             "name": "SM output parameter Shift Time Too Short",
+            "attribute": " ",
             "type": " "
         },
         {
             "index": "1C32",
             "subindex": "00F",
             "name": "SM output parameter SubIndex 014",
+            "attribute": " ",
             "type": " "
         },
         {
             "index": "1C32",
             "subindex": "0010",
             "name": "SM output parameter SubIndex 015",
+            "attribute": " ",
             "type": " "
         },
         {
             "index": "1C32",
             "subindex": "0011",
             "name": "SM output parameter SubIndex 016",
+            "attribute": " ",
             "type": " "
         },
         {
             "index": "1C32",
             "subindex": "0012",
             "name": "SM output parameter SubIndex 017",
+            "attribute": " ",
             "type": " "
         },
         {
             "index": "1C32",
             "subindex": "0020",
             "name": "SM output parameter SubIndex 018",
+            "attribute": "RO",
             "type": "BOOL"
         },
         {
             "index": "1C33",
             "subindex": "0000",
             "name": "SM input parameter SubIndex 000",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "1C33",
             "subindex": "0001",
             "name": "SM input parameter Synchronization Type",
+            "attribute": "RO",
             "type": "UINT16"
         },
         {
             "index": "1C33",
             "subindex": "0002",
             "name": "SM input parameter Cycle Time",
+            "attribute": "RO",
             "type": "UINT32"
         },
         {
             "index": "1C33",
             "subindex": "0003",
             "name": "SM input parameter SubIndex 003",
+            "attribute": " ",
             "type": " "
         },
         {
             "index": "1C33",
             "subindex": "0004",
             "name": "SM input parameter Synchronization Types",
+            "attribute": "RO",
             "type": "UINT16"
         },
         {
             "index": "1C33",
             "subindex": "0005",
             "name": "SM input parameter supported",
+            "attribute": "RO",
             "type": "UINT32"
         },
         {
             "index": "1C33",
             "subindex": "0006",
             "name": "SM input parameter Minimum Cycle Time",
+            "attribute": "RO",
             "type": "UINT32"
         },
         {
             "index": "1C33",
             "subindex": "0007",
             "name": "SM input parameter Calc and Copy Time",
+            "attribute": " ",
             "type": " "
         },
         {
             "index": "1C33",
             "subindex": "0008",
             "name": "SM input parameter SubIndex 007",
+            "attribute": "RW",
             "type": "UINT16"
         },
         {
             "index": "1C33",
             "subindex": "0009",
             "name": "SM input parameter Get Cycle Time",
+            "attribute": "RO",
             "type": "UINT32"
         },
         {
             "index": "1C33",
             "subindex": "000A",
             "name": "SM input parameter Delay Time",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "1C33",
             "subindex": "000B",
             "name": "SM input parameter Sync0 Cycle Time",
+            "attribute": "RO",
             "type": "UINT16"
         },
         {
             "index": "1C33",
             "subindex": "000C",
             "name": "SM input parameter SM-Event Missed",
+            "attribute": "RO",
             "type": "UINT16"
         },
         {
             "index": "1C33",
             "subindex": "000D",
             "name": "SM input parameter Cycle Time Too Small",
+            "attribute": " ",
             "type": " "
         },
         {
             "index": "1C33",
             "subindex": "000E",
             "name": "SM input parameter Shift Time Too Short",
+            "attribute": " ",
             "type": " "
         },
         {
             "index": "1C33",
             "subindex": "000F",
             "name": "SM input parameter SubIndex 014",
+            "attribute": " ",
             "type": " "
         },
         {
             "index": "1C33",
             "subindex": "0010",
             "name": "SM input parameter SubIndex 015",
+            "attribute": " ",
             "type": " "
         },
         {
             "index": "1C33",
             "subindex": "0011",
             "name": "SM input parameter SubIndex 016",
+            "attribute": " ",
             "type": " "
         },
         {
             "index": "1C33",
             "subindex": "0012",
             "name": "SM input parameter SubIndex 017",
+            "attribute": " ",
             "type": " "
         },
         {
             "index": "1C33",
             "subindex": "0020",
             "name": "SM input parameter SubIndex 018",
+            "attribute": "RO",
             "type": " "
         },
         {
             "index": "603F",
             "subindex": "0000",
             "name": "error_code",
+            "attribute": "RO",
             "type": "UINT16"
         },
         {
             "index": "6040",
             "subindex": "0000",
             "name": "controlword",
+            "attribute": "RW",
             "type": "UINT16"
         },
         {
             "index": "6041",
             "subindex": "0000",
             "name": "statusword",
+            "attribute": "RO",
             "type": "UINT16"
         },
         {
             "index": "6060",
             "subindex": "0000",
             "name": "modes_of_operation",
+            "attribute": "RW",
             "type": "INT8"
         },
         {
             "index": "6061",
             "subindex": "0000",
             "name": "modes_of_operation_display",
+            "attribute": "RO",
             "type": "INT8"
         },
         {
             "index": "6062",
             "subindex": "0000",
             "name": "position_demand_value",
+            "attribute": "RO",
             "type": "INT32"
         },
         {
             "index": "6063",
             "subindex": "0000",
             "name": "position_actual_internal_value",
+            "attribute": "RO",
             "type": "INT32"
         },
         {
             "index": "6064",
             "subindex": "0000",
             "name": "position_actual_value",
+            "attribute": "RO",
             "type": "INT32"
         },
         {
             "index": "6071",
             "subindex": "0000",
             "name": "target_torque",
+            "attribute": "RW",
             "type": "INT16"
         },
         {
             "index": "6072",
             "subindex": "0000",
             "name": "max_torque",
+            "attribute": "RW",
             "type": "UINT16"
         },
         {
             "index": "6073",
             "subindex": "0000",
             "name": "max_current",
+            "attribute": "RW",
             "type": "UINT16"
         },
         {
             "index": "607A",
             "subindex": "0000",
             "name": "target_position",
+            "attribute": "RW",
             "type": "INT32"
         },
         {
             "index": "6080",
             "subindex": "0000",
             "name": "max_motor_speed",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "60FF",
             "subindex": "0000",
             "name": "target_velocity",
+            "attribute": "RW",
             "type": "INT32"
         },{
             "index": "60FD",
             "subindex": "0000",
             "name": "digital_inputs",
+            "attribute": "RO",
             "type": "UINT32"
         },
         {
             "index": "60FE",
             "subindex": "0000",
-            "name": "digital_outputs SubIndex 001",
+            "name": "digital_outputs SubIndex 000",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "60FE",
             "subindex": "0001",
             "name": "digital_outputs SubIndex 001",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "60FE",
             "subindex": "0002",
             "name": "digital_outputs SubIndex 002",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "6066",
             "subindex": "0000",
             "name": "following_error_time_out",
+            "attribute": "RW",
             "type": "UINT16"
         },
         {
             "index": "6069",
             "subindex": "0000",
             "name": "velocity_sensor_actual_value",
+            "attribute": "RO",
             "type": "INT32"
         },
         {
             "index": "606B",
             "subindex": "0000",
             "name": "velocity_demand_value",
+            "attribute": "RO",
             "type": "INT32"
         },
         {
             "index": "606C",
             "subindex": "0000",
             "name": "velocity_actual_value",
+            "attribute": "RO",
             "type": "INT32"
         },
         {
             "index": "606F",
             "subindex": "0000",
             "name": "velocity_threshold",
+            "attribute": "RW",
             "type": "UINT16"
         },
         {
             "index": "6070",
             "subindex": "0000",
             "name": "velocity_threshold_time",
+            "attribute": "RW",
             "type": "UINT16"
         },
         {
             "index": "6074",
             "subindex": "0000",
             "name": "torque_demand",
+            "attribute": "RO",
             "type": "INT16"
         },
         {
             "index": "6075",
             "subindex": "0000",
             "name": "motor_rated_current",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "6076",
             "subindex": "0000",
             "name": "motor_rated_torque",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "6077",
             "subindex": "0000",
             "name": "torque_actual_value",
+            "attribute": "RO",
             "type": "INT16"
         },
         {
             "index": "6078",
             "subindex": "0000",
             "name": "current_actual_value",
+            "attribute": "RO",
             "type": "INT16"
         },
         {
             "index": "607E",
             "subindex": "0000",
             "name": "polarity",
+            "attribute": "RW",
             "type": "UINT8"
         },
         {
             "index": "60B2",
             "subindex": "0000",
             "name": "torque_offset",
+            "attribute": "RW",
             "type": "INT16"
         },
         {
             "index": "60BB",
             "subindex": "0000",
             "name": "touch_probe_pos_1_neg_value",
+            "attribute": "RO",
             "type": "INT32"
         },{
             "index": "6065",
             "subindex": "0000",
             "name": "following_error_window",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "606A",
             "subindex": "0000",
             "name": "sensor_selection_code",
+            "attribute": "RW",
             "type": "INT16"
         },
         {
             "index": "607C",
             "subindex": "0000",
             "name": "home_offset",
+            "attribute": "RW",
             "type": "INT32"
         },
         {
             "index": "608F",
             "subindex": "0000",
             "name": "position_encoder_resolution SubIndex 000",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "608F",
             "subindex": "0001",
             "name": "position_encoder_resolution SubIndex 001",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "608F",
             "subindex": "0002",
             "name": "position_encoder_resolution SubIndex 002",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "6090",
             "subindex": "0000",
             "name": "velocity_encoder_resolution SubIndex 000",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "6090",
             "subindex": "0001",
             "name": "velocity_encoder_resolution SubIndex 001",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "6090",
             "subindex": "0002",
             "name": "velocity_encoder_resolution SubIndex 002",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "6091",
             "subindex": "0000",
             "name": "gear_ratio SubIndex 000",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "6091",
             "subindex": "0001",
             "name": "gear_ratio SubIndex 001",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "6091",
             "subindex": "0002",
             "name": "gear_ratio SubIndex 002",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "6092",
             "subindex": "0000",
             "name": "feed_constant SubIndex 000",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "6092",
             "subindex": "0001",
             "name": "feed_constant SubIndex 001",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "6092",
             "subindex": "0002",
             "name": "feed_constant SubIndex 002",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "6098",
             "subindex": "0000",
             "name": "homing_method",
+            "attribute": "RW",
             "type": "INT8"
         },
         {
             "index": "6099",
             "subindex": "0000",
             "name": "homing_speed SubIndex 000",
+            "attribute": "RO",
             "type": "UINT8"
         },
         {
             "index": "6099",
             "subindex": "0001",
             "name": "homing_speed SubIndex 001",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "6099",
             "subindex": "0002",
             "name": "homing_speed SubIndex 002",
+            "attribute": "RW",
             "type": "UINT32"
         },
         {
             "index": "609A",
             "subindex": "0000",
+            "attribute": "RW",
             "name": "homing_acceleration",
             "type": "UINT32"
         },
@@ -848,30 +996,70 @@
             "index": "60B1",
             "subindex": "0000",
             "name": "velocity_offset",
+            "attribute": "RW",
             "type": "INT32"
         },
         {
             "index": "60B8",
             "subindex": "0000",
             "name": "touch_probe_function",
+            "attribute": "RW",
             "type": "UINT16"
         },
         {
             "index": "60B9",
             "subindex": "0000",
             "name": "touch_probe_status",
+            "attribute": "RW",
             "type": "UINT16"
         },
         {
             "index": "60BA",
             "subindex": "0000",
             "name": "touch_probe_pos_1_pos_value",
+            "attribute": "RW",
             "type": "INT32"
+        },
+        {
+            "index": "0180",
+            "subindex": "0000",
+            "name": "theta_ref_sent",
+            "attribute": "R",
+            "type": "REAL32"
+        },
+        {
+            "index": "0181",
+            "subindex": "0000",
+            "name": "PIDspeed_sent",
+            "attribute": "R",
+            "type": "REAL32"
         },
         {
             "index": "0182",
             "subindex": "0000",
-            "name": "theta_actual_sent",
+            "name": "PIDpos_sent",
+            "attribute": "R",
+            "type": "REAL32"
+        },
+        {
+            "index": "0183",
+            "subindex": "0000",
+            "name": "rx_PDO_mode",
+            "attribute": "R",
+            "type": "REAL32"
+        },
+        {
+            "index": "0184",
+            "subindex": "0000",
+            "name": "speed_ref_sent",
+            "attribute": "R",
+            "type": "REAL32"
+        },
+        {
+            "index": "0185",
+            "subindex": "0000",
+            "name": "rx_PDO_change_PID",
+            "attribute": "R",
             "type": "REAL32"
         }
 

@@ -864,19 +864,6 @@ font: 700 18pt &quot;Times New Roman&quot;;</string>
          </rect>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_change_PID">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>230</y>
-          <width>121</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Change</string>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_4">
         <property name="geometry">
          <rect>
@@ -995,32 +982,6 @@ font: 700 18pt &quot;Times New Roman&quot;;</string>
         </property>
         <property name="text">
          <string>Kd</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_send_PID">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>230</y>
-          <width>121</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Send PID</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_refresh_PID">
-        <property name="geometry">
-         <rect>
-          <x>270</x>
-          <y>230</y>
-          <width>121</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Refresh</string>
         </property>
        </widget>
       </widget>
@@ -1185,7 +1146,7 @@ image: url(:/images/images/save.jpg);</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1181</width>
+        <width>1351</width>
         <height>981</height>
        </rect>
       </property>
@@ -1270,7 +1231,7 @@ image: url(:/images/images/save.jpg);</string>
       </column>
       <column>
        <property name="text">
-        <string>Data</string>
+        <string>Atribute</string>
        </property>
        <property name="font">
         <font>
@@ -1289,16 +1250,13 @@ image: url(:/images/images/save.jpg);</string>
       </column>
       <column>
        <property name="text">
-        <string>Value</string>
+        <string>Data</string>
        </property>
        <property name="font">
         <font>
          <family>Times New Roman</family>
          <pointsize>18</pointsize>
-         <italic>false</italic>
          <bold>true</bold>
-         <underline>false</underline>
-         <strikeout>false</strikeout>
         </font>
        </property>
        <property name="background">
@@ -1320,7 +1278,7 @@ image: url(:/images/images/save.jpg);</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1181</width>
+        <width>1351</width>
         <height>981</height>
        </rect>
       </property>

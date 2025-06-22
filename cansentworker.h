@@ -18,7 +18,7 @@ signals:
 
 public slots:
     void handleSendFrame(quint16 index, quint16 subindex, float value);
-    void sendPIDFrame(quint16 index, float kp, float ki, float kd);
+    // void sendPIDFrame(quint16 index, float kp, float ki, float kd);
     void startListening();
 
 

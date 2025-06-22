@@ -98,81 +98,81 @@ void CanWorker::handleSendFrame(quint16 index, quint16 subindex, float value) {
     emit logMessage("Sent: " + frame.toHex(' ').toUpper());
 }
 
-void CanWorker::sendPIDFrame(quint16 index, float kp, float ki, float kd) {
-    if (!serial) return;
+// void CanWorker::sendPIDFrame(quint16 index, float kp, float ki, float kd) {
+//     if (!serial) return;
 
-    QByteArray frame;
+//     QByteArray frame;
 
-    // Start Mark
-    frame.append((char)0xAA);
-    frame.append((char)0xAA);
+//     // Start Mark
+//     frame.append((char)0xAA);
+//     frame.append((char)0xAA);
 
-    // Index
-    frame.append((char)(index & 0xFF));
-    frame.append((char)((index >> 8) & 0xFF));
+//     // Index
+//     frame.append((char)(index & 0xFF));
+//     frame.append((char)((index >> 8) & 0xFF));
 
-    // SubIndex mặc định là 0x0000
-    frame.append((char)0x00);
-    frame.append((char)0x00);
+//     // SubIndex mặc định là 0x0000
+//     frame.append((char)0x00);
+//     frame.append((char)0x00);
 
-    // ----- Tạo frameData 6 byte (uint16 scaled) -----
-    auto encodeFloat = [](float val) -> QByteArray {
-        quint16 raw = static_cast<quint16>(val * 100.0f);
-        QByteArray b;
-        b.append(static_cast<quint8>(raw & 0xFF));
-        b.append(static_cast<quint8>((raw >> 8) & 0xFF));
-        return b;
-    };
+//     // ----- Tạo frameData 6 byte (uint16 scaled) -----
+//     auto encodeFloat = [](float val) -> QByteArray {
+//         quint16 raw = static_cast<quint16>(val * 100.0f);
+//         QByteArray b;
+//         b.append(static_cast<quint8>(raw & 0xFF));
+//         b.append(static_cast<quint8>((raw >> 8) & 0xFF));
+//         return b;
+//     };
 
-    QByteArray frameData;
-    frameData.append(encodeFloat(kp));
-    frameData.append(encodeFloat(ki));
-    frameData.append(encodeFloat(kd));
+//     QByteArray frameData;
+//     frameData.append(encodeFloat(kp));
+//     frameData.append(encodeFloat(ki));
+//     frameData.append(encodeFloat(kd));
 
-    // Đảm bảo đủ 8 byte
-    while (frameData.size() < 8)
-        frameData.append((char)0x00);
+//     // Đảm bảo đủ 8 byte
+//     while (frameData.size() < 8)
+//         frameData.append((char)0x00);
 
-    frame.append(frameData);
+//     frame.append(frameData);
 
-    // Frame Meta
-    frame.append((char)0x08); // Length
-    frame.append((char)0x00); // Message Type
-    frame.append((char)0x00); // CAN Frame Type
-    frame.append((char)0x00); // Request Type
+//     // Frame Meta
+//     frame.append((char)0x08); // Length
+//     frame.append((char)0x00); // Message Type
+//     frame.append((char)0x00); // CAN Frame Type
+//     frame.append((char)0x00); // Request Type
 
-    // ----- CRC -----
-    QByteArray crcData = frame.mid(2, 16);
+//     // ----- CRC -----
+//     QByteArray crcData = frame.mid(2, 16);
 
-    bool insertFrameCtrl = false;
-    for (char byte : crcData) {
-        if (byte == 0xA5 || byte == 0xAA || byte == 0x55) {
-            insertFrameCtrl = true;
-            break;
-        }
-    }
+//     bool insertFrameCtrl = false;
+//     for (char byte : crcData) {
+//         if (byte == 0xA5 || byte == 0xAA || byte == 0x55) {
+//             insertFrameCtrl = true;
+//             break;
+//         }
+//     }
 
-    uchar crc = 0;
-    for (char byte : crcData) {
-        crc += (uchar)byte;
-    }
-    crc &= 0xFF;
+//     uchar crc = 0;
+//     for (char byte : crcData) {
+//         crc += (uchar)byte;
+//     }
+//     crc &= 0xFF;
 
-    if (insertFrameCtrl)
-        frame.append((char)0xA5);
+//     if (insertFrameCtrl)
+//         frame.append((char)0xA5);
 
-    frame.append(crc);
+//     frame.append(crc);
 
-    // End Mark
-    frame.append((char)0x55);
-    frame.append((char)0x55);
+//     // End Mark
+//     frame.append((char)0x55);
+//     frame.append((char)0x55);
 
-    // Gửi
-    if (serial->write(frame) && serial->waitForBytesWritten(1000)) {
-        qDebug() << "Sent PID Frame (HEX): " << frame.toHex(' ').toUpper();
-    } else {
-        qDebug() << "Lỗi khi gửi PID Frame!";
-    }
+//     // Gửi
+//     if (serial->write(frame) && serial->waitForBytesWritten(1000)) {
+//         qDebug() << "Sent PID Frame (HEX): " << frame.toHex(' ').toUpper();
+//     } else {
+//         qDebug() << "Lỗi khi gửi PID Frame!";
+//     }
 
-    emit logMessage("Sent PID: " + frame.toHex(' ').toUpper());
-}
+//     emit logMessage("Sent PID: " + frame.toHex(' ').toUpper());
+// }

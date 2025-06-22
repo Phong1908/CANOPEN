@@ -27,6 +27,7 @@ public:
     QMap<QPair<int, int>, QString> nameMap;
     QMap<QPair<int, int>, QString> typeMap;
     QMap<QPair<int, int>, int> rowMap; // Lưu vị trí của (index, subindex)
+    QMap<QPair<int, int>, QString> attributeMap;
 
 private slots:
 
@@ -43,9 +44,7 @@ private slots:
     void on_save_plot_current_clicked();
     void on_save_plot_speed_clicked();
     void on_save_plot_angle_clicked();
-    void on_pushButton_change_PID_clicked();
-    void on_pushButton_send_PID_clicked();
-    void on_pushButton_refresh_PID_clicked();
+
 
 
 
@@ -61,7 +60,7 @@ private:
     QByteArray hexStringToByteArray(const QString &hex);
     void updateTextBrowserSent(const QString &data);
     void parseCanData(const QByteArray &data);
-    void updateTableValue1(int index, int subindex, const QString &dataHex, const QString &valueDecimal);
+    void updateTableValue1(int index, int subindex, const QString &dataHex, const QString &attribute);
     void loadJsonData();
     void sendCANFrame(quint16 index, quint16 subindex, float value);
     void processReceivedCANFrame(const QByteArray &frame);

@@ -31,11 +31,12 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     loadJsonData(); // Load dữ liệu từ JSON khi khởi động
+    ui->alltab->setCurrentIndex(0);
     // loadCANDefinitions();
     // Tạo đối tượng Serial
     Serial = new QSerialPort(this);
     // Kết nối tín hiệu với slot xử lý
-    // ui->dothi->setTabText(0, "Graph Voltage");
+
     ui->dothi->setTabText(0, "Graph Current");
     ui->dothi->setTabText(1, "Graph Angle");
     ui->dothi->setTabText(2, "Graph Speed");
@@ -84,33 +85,6 @@ MainWindow::MainWindow(QWidget *parent)
     canThread->start();
 
     listAvailableSerialPorts();
-
-
-    // ////////////////////ĐỒ THỊ ĐIỆN ÁP //////////////////////////////////////
-    // customPlotVoltage = new QCustomPlot(ui->customPlotWidget1);
-    // customPlotVoltage->setGeometry(ui->customPlotWidget1->rect());
-    // customPlotVoltage->setOpenGl(true); // Bật Double Buffer với OpenGL
-
-    // // Graph 0: ud (xanh)
-    // customPlotVoltage->addGraph();
-    // customPlotVoltage->graph(0)->setPen(QPen(Qt::blue));
-    // customPlotVoltage->graph(0)->setName("ud");
-
-    // // Graph 1: uq (cam)
-    // customPlotVoltage->addGraph();
-    // customPlotVoltage->graph(1)->setPen(QPen(Qt::darkYellow));
-    // customPlotVoltage->graph(1)->setName("uq");
-
-    // // Cấu hình trục
-    // customPlotVoltage->xAxis->setLabel("Time (s)");
-    // customPlotVoltage->yAxis->setLabel("Voltage (V)");
-    // customPlotVoltage->xAxis->setRange(0, 10);
-    // customPlotVoltage->yAxis->setRange(-10, 10);  // Điều chỉnh tùy hệ thống
-    // customPlotVoltage->legend->setVisible(true);
-
-    // // Bật zoom và kéo bằng chuột trên cả hai trục
-    // customPlotVoltage->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
-    // // customPlotVoltage->axisRect()->setRangeZoom(Qt::Horizontal | Qt::Vertical);  // Zoom cả trục X và Y
     // //////////////////// ĐỒ THỊ DÒNG ĐIỆN //////////////////////////////////////////////
     customPlotCurrent = new QCustomPlot(ui->customPlotWidget2);
     customPlotCurrent->setGeometry(ui->customPlotWidget2->rect());
@@ -166,11 +140,11 @@ MainWindow::MainWindow(QWidget *parent)
     // Thêm đồ thị
     customPlotTheta->addGraph();  // theta_now
     customPlotTheta->graph(0)->setPen(QPen(Qt::darkGreen));
-    customPlotTheta->graph(0)->setName("theta_now");
+    customPlotTheta->graph(0)->setName("theta_response");
 
     customPlotTheta->addGraph();  // theta_ref
     customPlotTheta->graph(1)->setPen(QPen(Qt::red, 1, Qt::DashLine));
-    customPlotTheta->graph(1)->setName("theta_ref");
+    customPlotTheta->graph(1)->setName("theta_command");
 
     // Cấu hình trục
     customPlotTheta->xAxis->setLabel("Time (s)");
@@ -199,7 +173,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Thêm đồ thị cho speed_now
     customPlotSpeed->addGraph();  // graph(0) - speed_now
     customPlotSpeed->graph(0)->setPen(QPen(Qt::blue));
-    customPlotSpeed->graph(0)->setName("speed_now");
+    customPlotSpeed->graph(0)->setName("speed_response");
 
     // Cấu hình trục
     customPlotSpeed->xAxis->setLabel("Time (s)");
@@ -227,11 +201,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     customPlotSpeedGraph->addGraph();  // speed_now
     customPlotSpeedGraph->graph(0)->setPen(QPen(Qt::blue));
-    customPlotSpeedGraph->graph(0)->setName("speed_now");
+    customPlotSpeedGraph->graph(0)->setName("speed_response");
 
     customPlotSpeedGraph->addGraph();  // speed_ref
     customPlotSpeedGraph->graph(1)->setPen(QPen(Qt::darkRed, 1, Qt::DashLine));
-    customPlotSpeedGraph->graph(1)->setName("speed_ref");
+    customPlotSpeedGraph->graph(1)->setName("speed_command");
+
 
     customPlotSpeedGraph->xAxis->setLabel("Time (s)");
     customPlotSpeedGraph->yAxis->setLabel("Speed(RPM)");
@@ -249,10 +224,6 @@ MainWindow::MainWindow(QWidget *parent)
     currentTimer = new QTimer(this);
     connect(currentTimer, &QTimer::timeout, this, &MainWindow::updateCurrentPlot);
     currentTimer->start(20); //
-    // //////////////// TIMER CẬP NHẬT ĐỒ THỊ ĐIỆN ÁP /////////////////////////////////
-    // VoltageTimer = new QTimer(this);
-    // connect(VoltageTimer, &QTimer::timeout, this, &MainWindow::updateVoltagePlot);
-    // VoltageTimer->start(20); //
     // //////////////// TIMER CẬP NHẬT ĐỒ THỊ SPEED ĐIỀU KHIỂN VỊ TRÍ /////////////////////////////////
     speedPlotTimer = new QTimer(this);
     connect(speedPlotTimer, &QTimer::timeout, this, &MainWindow::updateSpeedPlot);
@@ -440,46 +411,6 @@ void MainWindow::updateCurrentPlot()
 }
 
 void MainWindow::updateVoltagePlot(){
-    // QVector<QPointF> data;
-
-    // voltageBufferMutex.lock();
-    // useVoltageBufferA = !useVoltageBufferA;
-    // if (useVoltageBufferA) {
-    //     data = voltageBufferB;
-    //     voltageBufferB.clear();
-    // } else {
-    //     data = voltageBufferA;
-    //     voltageBufferA.clear();
-    // }
-    // voltageBufferMutex.unlock();
-
-    // QVector<double> udVec, uqVec, timeVec;
-
-    // for (const QPointF &point : data) {
-    //     double timestamp = voltageTimerElapsed.elapsed() / 1000.0;
-    //     timeVec.append(timestamp);
-    //     udVec.append(point.x());
-    //     uqVec.append(point.y());
-    // }
-
-    // totalTimeVoltage += timeVec;
-    // totalUd += udVec;
-    // totalUq += uqVec;
-
-    // while (totalTimeVoltage.size() > 400) {
-    //     totalTimeVoltage.removeFirst();
-    //     totalUd.removeFirst();
-    //     totalUq.removeFirst();
-    // }
-
-    // if (!totalTimeVoltage.isEmpty()) {
-    //     double lastTime = totalTimeVoltage.last();
-    //     customPlotVoltage->xAxis->setRange(qMax(0.0, lastTime - 20), lastTime);
-    // }
-
-    // customPlotVoltage->graph(0)->setData(totalTimeVoltage, totalUd);
-    // customPlotVoltage->graph(1)->setData(totalTimeVoltage, totalUq);
-    // customPlotVoltage->replot();
 }
 
 
@@ -502,32 +433,6 @@ void MainWindow::on_pushButton_refresh_clicked()
 
 void MainWindow::on_pushButton_okPort_clicked()
 {
-    // QString selectedPort = ui->comboBox_serialPort->currentData().toString();
-    // if (selectedPort.isEmpty() || selectedPort.contains("No COM ports")) {
-    //     QMessageBox::warning(this, "Invalid Port", "Please select a valid COM port.");
-    //     return;
-    // }
-
-    // // Đọc Baudrate từ comboBox_Baudrate
-    // QString selectedBaud = ui->comboBox_Baudrate->currentText();
-
-    // Serial->setPortName(selectedPort);
-    // // Serial->setBaudRate(QSerialPort::Baud115200);
-    // Serial->setBaudRate(selectedBaud.toInt());  // Thiết lập Baudrate
-    // Serial->setDataBits(QSerialPort::Data8);
-    // Serial->setParity(QSerialPort::NoParity);
-    // Serial->setStopBits(QSerialPort::OneStop);
-    // Serial->setFlowControl(QSerialPort::NoFlowControl);
-
-    // if (Serial->open(QIODevice::ReadWrite)) {
-    //     qDebug() << "Serial port opened: " << selectedPort;
-    //     // connect(Serial, &QSerialPort::readyRead, this, &MainWindow::readCanData);
-    //     QMessageBox::information(this, "Success", "Connected to " + selectedPort);
-    //     ui->label_status->setText("Connected to " + selectedPort);
-    // }
-    // thetaTimer.start();
-    // currentTimerElapsed.start();
-    // voltageTimerElapsed.start();
     QString selectedPort = ui->comboBox_serialPort->currentData().toString();
     if (selectedPort.isEmpty() || selectedPort.contains("No COM ports")) {
         QMessageBox::warning(this, "Invalid Port", "Please select a valid COM port.");
@@ -725,79 +630,6 @@ float MainWindow::convertToFloat(const QByteArray &valueData) {
 }
 
 void MainWindow::handleSpecialValues(int index, int subindex, const QByteArray &valueData) {
-    // static float prev_id = 0.0f;
-    // static float prev_iq = 0.0f;
-    // float valueFloat = convertToFloat(valueData);
-    // if (valueFloat > -1500 && valueFloat < 1500 && (valueFloat < -0.0000001 || valueFloat > 0.0000001)) {
-    //     if (index == 0x01A0 && subindex == 0x0000) {
-    //         // Angle
-    //         ui->label_angle->setText(QString::number(valueFloat/3.14159265359, 'f', 4));
-    //         float theta_now = valueFloat/3.14159265359;
-    //         float theta_ref = theta_ref_global;
-    //         double timestamp = QDateTime::currentDateTime().toMSecsSinceEpoch() / 1000.0;
-    //         thetaTimeData.append(timestamp);
-    //         thetaNowData.append(theta_now);
-    //         thetaRefData.append(theta_ref);
-
-    //         QMutexLocker locker(&bufferMutex);
-    //         if (useBufferA)
-    //             bufferA.append(QPointF(theta_ref_global, theta_now));
-    //         else
-    //             bufferB.append(QPointF(theta_ref_global, theta_now));
-    //     }
-
-    //     else if (index == 0x02A0 && subindex == 0x0000 && valueData.size() >= 8) {
-    //         // id và iq
-    //         float id = convertToFloat(valueData.mid(0, 4));
-    //         float iq = convertToFloat(valueData.mid(4, 4));
-
-    //         if (id > -100 && id < 100 && (id < -0.00001 || id > 0.00001)) {
-    //             if (qAbs(id - prev_id) <= 20.0f) {  // chỉ nhận nếu chênh lệch không quá 20
-    //                 ui->label_id->setText(QString::number(id, 'f', 4));
-    //                 id_tmp = id;
-    //                 prev_id = id; // lưu giá trị để so sánh lần sau
-    //             }
-    //         }
-
-    //         if (iq > -100 && iq < 100 && (iq < -0.00001 || iq > 0.00001)) {
-    //             if (qAbs(iq - prev_iq) <= 20.0f) {
-    //                 ui->label_iq->setText(QString::number(iq, 'f', 4));
-    //                 iq_tmp = iq;
-    //                 prev_iq = iq;
-
-    //                 QMutexLocker locker(&currentBufferMutex);
-    //                 if (useCurrentBufferA)
-    //                     currentBufferA.append(QPointF(id_tmp, iq_tmp));
-    //                 else
-    //                     currentBufferB.append(QPointF(id_tmp, iq_tmp));
-    //             }
-    //         }
-    //     }
-
-    //     else if (index == 0x03A0 && subindex == 0x0000 && valueData.size() >= 8) {
-    //         // vd và vq
-    //         float vd = convertToFloat(valueData.mid(0, 4));
-    //         // qDebug() << "Giá trị vd sau khi chuyển đổi:" << vd;
-    //         // qDebug() << "Dữ liệu valueData (hex):" << valueData.toHex(' ').toUpper();
-    //         float vq = convertToFloat(valueData.mid(4, 4));
-
-    //         if (vd > -50 && vd < 50 && (vd < -0.01 || vd > 0.01))
-    //             ui->label_vd->setText(QString::number(vd, 'f', 4));
-
-    //         if (vq > -100 && vq < 100 && (vq < -0.01 || vq > 0.01))
-    //             ui->label_vq->setText(QString::number(vq, 'f', 4));
-
-    //         if ((qAbs(vd) > 0.0001 && qAbs(vd) < 50) &&
-    //             (qAbs(vq) > 0.0001 && qAbs(vq) < 50)) {
-
-    //             QMutexLocker locker(&voltageBufferMutex);
-    //             if (useVoltageBufferA)
-    //                 voltageBufferA.append(QPointF(vd, vq));
-    //             else
-    //                 voltageBufferB.append(QPointF(vd, vq));
-    //         }
-    //     }
-    // }
     float valueFloat = convertToFloat(valueData);
     if (index == 0x01A0 && subindex == 0x0000) {
         // Angle
@@ -857,21 +689,6 @@ void MainWindow::handleSpecialValues(int index, int subindex, const QByteArray &
 
 
     }
-
-    // else if (index == 0x03A0 && subindex == 0x0000 && valueData.size() >= 8) {
-    //     // vd và vq
-    //     float vd = convertToFloat(valueData.mid(0, 4));
-    //     float vq = convertToFloat(valueData.mid(4, 4));
-
-    //     ui->label_vd->setText(QString::number(vd, 'f', 4));
-    //     ui->label_vq->setText(QString::number(vq, 'f', 4));
-
-    //     QMutexLocker locker(&voltageBufferMutex);
-    //     if (useVoltageBufferA)
-    //         voltageBufferA.append(QPointF(vd, vq));
-    //     else
-    //         voltageBufferB.append(QPointF(vd, vq));
-    // }
     if (index == 0x03A0 && subindex == 0x0000 && valueData.size() >= 6) {
         if (autoUpdatePID) {
         // Đọc raw 2 byte theo little endian
@@ -927,11 +744,10 @@ void MainWindow::parseCanData(const QByteArray &data) {
     }
 
     QString dataHex = valueData.toHex(' ').toUpper();
-    qint64 valueDecimal = convertToDecimal(valueData);
+    QString attribute = attributeMap.contains(qMakePair(index, subindex))? attributeMap[qMakePair(index, subindex)]: "Unknown";
 
-    updateTableValue1(index, subindex, dataHex, QString::number(valueDecimal));
+    updateTableValue1(index, subindex, dataHex, attribute);
 
-    // Gọi hàm mới dùng QByteArray thay vì float
     appendToTableWidget(index, subindex, valueData);
 
     handleSpecialValues(index, subindex, valueData);
@@ -943,39 +759,34 @@ void MainWindow::parseCanData(const QByteArray &data) {
 // QMap<QPair<int, int>, int> rowMap;
 
 // Hàm cập nhật giá trị vào bảng `QTableWidget_2`
-void MainWindow::updateTableValue1(int index, int subindex, const QString &dataHex, const QString &valueDecimal) {
+void MainWindow::updateTableValue1(int index, int subindex, const QString &dataHex, const QString &attribute) {
     QPair<int, int> key = qMakePair(index, subindex);
     QString name = nameMap.contains(key) ? nameMap[key] : "Unknown";
     QString type = typeMap.contains(key) ? typeMap[key] : "Unknown";
 
-    // Chuyển index và subindex thành chuỗi với 4 chữ số (thêm số 0 vào trước nếu cần)
     QString indexStr = QString::number(index, 16).toUpper().rightJustified(4, '0');
     QString subindexStr = QString::number(subindex, 16).toUpper().rightJustified(4, '0');
-    // Kiểm tra nếu ID đã tồn tại trong bảng
+
     if (rowMap.contains(key)) {
         int row = rowMap[key];
-        ui->tableWidget_2->setItem(row, 3, new QTableWidgetItem(type)); // Cập nhật Type
-        ui->tableWidget_2->setItem(row, 4, new QTableWidgetItem(dataHex));   // Cập nhật cột "Data"
-        ui->tableWidget_2->setItem(row, 5, new QTableWidgetItem(valueDecimal)); //Cập nhật cột "Value"
+        ui->tableWidget_2->setItem(row, 3, new QTableWidgetItem(type));      // Cập nhật Type
+        ui->tableWidget_2->setItem(row, 4, new QTableWidgetItem(attribute));  // Attribute
+        ui->tableWidget_2->setItem(row, 5, new QTableWidgetItem(dataHex));   // Cập nhật Data
     } else {
-        // Thêm dòng mới
         int newRow = ui->tableWidget_2->rowCount();
         ui->tableWidget_2->insertRow(newRow);
 
-        // Gán giá trị vào từng cột
-        ui->tableWidget_2->setItem(newRow, 0, new QTableWidgetItem(name));  // Name
-        ui->tableWidget_2->setItem(newRow, 1, new QTableWidgetItem(indexStr)); // Index
-        ui->tableWidget_2->setItem(newRow, 2, new QTableWidgetItem(subindexStr)); // Subindex
-        ui->tableWidget_2->setItem(newRow, 3, new QTableWidgetItem(type));  // Type
-        ui->tableWidget_2->setItem(newRow, 4, new QTableWidgetItem(dataHex));  // data
-        ui->tableWidget_2->setItem(newRow, 5, new QTableWidgetItem(valueDecimal));   // Cột "Value"
+        ui->tableWidget_2->setItem(newRow, 0, new QTableWidgetItem(name));       // Name
+        ui->tableWidget_2->setItem(newRow, 1, new QTableWidgetItem(indexStr));   // Index
+        ui->tableWidget_2->setItem(newRow, 2, new QTableWidgetItem(subindexStr));// Subindex
+        ui->tableWidget_2->setItem(newRow, 3, new QTableWidgetItem(type));       // Type
+        ui->tableWidget_2->setItem(newRow, 4, new QTableWidgetItem(attribute));  // atribute
+        ui->tableWidget_2->setItem(newRow, 5, new QTableWidgetItem(dataHex));    // Data
 
-        // Lưu vị trí vào map để cập nhật nhanh hơn
         rowMap[key] = newRow;
     }
-
-
 }
+
 
 // Hàm đọc file JSON và lưu vào QMap
 void MainWindow::loadJsonData() {
@@ -997,14 +808,16 @@ void MainWindow::loadJsonData() {
         int subindex = obj["subindex"].toString().toInt(nullptr, 16);
         QString name = obj["name"].toString();
         QString type = obj["type"].toString();
+        QString attribute = obj["attribute"].toString();
         QString dataHex = obj["data"].toString(); // Lấy dữ liệu "data" (nếu có)
-        QString valueDecimal = obj["value"].toString(); // Lấy giá trị "value" (nếu có)
+
 
         QPair<int, int> key = qMakePair(index, subindex);
         nameMap[key] = name;
         typeMap[key] = type;
+        attributeMap[key] = attribute;
 
-        updateTableValue1(index, subindex, dataHex, valueDecimal);
+        updateTableValue1(index, subindex, dataHex, attribute);
     }
 
     QJsonArray array = doc.array();
@@ -1088,92 +901,6 @@ void MainWindow::on_pushButton_Mode_Position_clicked()
     appendToTableWidget(0x0183, 0x0000, valueData);
 }
 
-// nút nhấn gửi PID
-void MainWindow::on_pushButton_send_PID_clicked() {
-    // Đọc PID speed từ UI
-    float kp_speed = ui->kp_speed->text().toFloat();
-    float ki_speed = ui->ki_speed->text().toFloat();
-    float kd_speed = ui->kd_speed->text().toFloat();
-
-    // Đọc PID position từ UI
-    float kp_pos = ui->kp_pos->text().toFloat();
-    float ki_pos = ui->ki_pos->text().toFloat();
-    float kd_pos = ui->kd_pos->text().toFloat();
-
-    if (canWorker) {
-        // Gửi PID speed với index 181
-        canWorker->sendPIDFrame(0x0181, kp_speed, ki_speed, kd_speed);
-        // Hiển thị PID speed lên bảng
-        QByteArray speedData(6, 0);
-        qint16 kp_raw = static_cast<qint16>(kp_speed * 100);
-        qint16 ki_raw = static_cast<qint16>(ki_speed * 100);
-        qint16 kd_raw = static_cast<qint16>(kd_speed * 100);
-        speedData[0] = kp_raw & 0xFF;
-        speedData[1] = (kp_raw >> 8) & 0xFF;
-        speedData[2] = ki_raw & 0xFF;
-        speedData[3] = (ki_raw >> 8) & 0xFF;
-        speedData[4] = kd_raw & 0xFF;
-        speedData[5] = (kd_raw >> 8) & 0xFF;
-        appendToTableWidget(0x0181, 0x0000, speedData);
-
-        // Gửi PID position với index 182 (0x00B6)
-        canWorker->sendPIDFrame(0x0182, kp_pos, ki_pos, kd_pos);
-    }
-}
-
-// nút nhấn gửi mode change PID
-    void MainWindow::on_pushButton_change_PID_clicked()
-{
-    float value = 1.0f;
-    autoUpdatePID = false; // Tắt cập nhật tự động
-    emit sendCANCommand(0x0185, 0x0000, value);  // Gửi float
-
-    // Tạo 8 byte để hiển thị lên bảng
-    QByteArray valueData(8, 0);
-    memcpy(valueData.data(), &value, sizeof(float));
-    //hiển thi lên bảng
-    appendToTableWidget(0x0185, 0x0000, valueData);
-
-}
-
-
-// nút nhấn refresh PID
-void MainWindow::on_pushButton_refresh_PID_clicked()
-{
-    float value = 0.0f;
-    autoUpdatePID = true;  // Bật lại cập nhật
-    emit sendCANCommand(0x0185, 0x0000, value);  // Gửi float
-
-    // Tạo 8 byte để hiển thị lên bảng
-    QByteArray valueData(8, 0);
-    memcpy(valueData.data(), &value, sizeof(float));
-    //hiển thi lên bảng
-    appendToTableWidget(0x0185, 0x0000, valueData);
-
-}
-// // nút nhấn gửi pid speed
-// void MainWindow::on_pushButton_sent_speed_clicked() {
-//     float kp = ui->kp_speed->text().toFloat();
-//     float ki = ui->ki_speed->text().toFloat();
-//     float kd = ui->kd_speed->text().toFloat();
-
-//     // Gửi PID Speed với index = 0x03A0
-//     if (canWorker) {
-//         canWorker->sendPIDFrame(0x03A0, kp, ki, kd);
-//     }
-// }
-
-// // nút nhấn gửi pid pos
-// void MainWindow::on_pushButton_send_pos_clicked() {
-//     float kp = ui->kp_pos->text().toFloat();
-//     float ki = ui->ki_pos->text().toFloat();
-//     float kd = ui->kd_pos->text().toFloat();
-
-//     // Gửi PID Position với index = 0x04A0
-//     if (canWorker) {
-//         canWorker->sendPIDFrame(0x04A0, kp, ki, kd);
-//     }
-// }
 
 
 void MainWindow::on_save_plot_speed_clicked(){
@@ -1219,53 +946,6 @@ void MainWindow::on_save_plot_current_clicked(){
     }
 }
 
-// void MainWindow::on_save_plot_angle_clicked() {
-//     QString fileName = QFileDialog::getSaveFileName(
-//         this,
-//         "Lưu đồ thị tốc độ + góc",
-//         "",
-//         "PNG Files (*.png);;JPEG Files (*.jpg)"
-//         );
-
-//     if (fileName.isEmpty())
-//         return;
-
-//     // Kích thước mỗi đồ thị
-//     QSize plotSize(1200, 400);  // mỗi đồ thị cao 400px
-//     QSize totalSize(plotSize.width(), plotSize.height() * 2);  // tổng cộng 2 đồ thị
-
-//     QPixmap finalPixmap(totalSize);
-//     finalPixmap.fill(Qt::white); // Nền trắng
-
-//     QPainter painter(&finalPixmap);
-//     customPlotTheta->resize(plotSize);
-//     customPlotTheta->replot(); // Đảm bảo đã vẽ xong
-//     customPlotTheta->render(&painter, QPoint(0, 0), QRegion(), QWidget::DrawChildren);
-
-//     customPlotSpeed->resize(plotSize);
-//     customPlotSpeed->replot(); // Đảm bảo đã vẽ xong
-//     customPlotSpeed->render(&painter, QPoint(0, plotSize.height()), QRegion(), QWidget::DrawChildren);
-
-//     painter.end();
-
-//     bool success = false;
-
-//     if (fileName.endsWith(".jpg", Qt::CaseInsensitive) || fileName.endsWith(".jpeg", Qt::CaseInsensitive)) {
-//         success = finalPixmap.save(fileName, "JPG");
-//     } else if (fileName.endsWith(".png", Qt::CaseInsensitive)) {
-//         success = finalPixmap.save(fileName, "PNG");
-//     } else {
-//         // Mặc định PNG nếu không rõ đuôi
-//         success = finalPixmap.save(fileName + ".png", "PNG");
-//     }
-
-//     if (success) {
-//         QMessageBox::information(this, "Thành công", "Đã lưu 2 đồ thị vào file:\n" + fileName);
-//     } else {
-//         QMessageBox::critical(this, "Lỗi", "Không thể lưu file.");
-//     }
-// }
-
 void MainWindow::on_save_plot_angle_clicked() {
     QString fileName = QFileDialog::getSaveFileName(
         this,
@@ -1305,105 +985,6 @@ void MainWindow::on_save_plot_angle_clicked() {
     }
 }
 
-// void MainWindow::loadCANDefinitions()
-// {
-//     QFile file("data1.json");
-//     if (!file.open(QIODevice::ReadOnly)) {
-//         qDebug() << "Không thể mở file JSON";
-//         return;
-//     }
-
-//     QByteArray jsonData = file.readAll();
-//     QJsonDocument doc = QJsonDocument::fromJson(jsonData);
-//     if (!doc.isArray()) {
-//         qDebug() << "Dữ liệu JSON không phải mảng!";
-//         return;
-//     }
-
-//     QJsonArray array = doc.array();
-//     for (const QJsonValue &val : array) {
-//         if (val.isObject()) {
-//             canDefinitions.append(val.toObject());
-//         }
-//     }
-// }
-// /////////// HÀM HIỂN THỊ DỮ LIỆU LÊN TABLETABWIGET input output //////////////////
-// void MainWindow::appendToTableWidget(quint16 index, quint8 subindex, double data)
-// {
-//     QString name = "Unknown";
-//     QString type = "Unknown";
-
-//     // Tìm trong danh sách đã load từ JSON
-//     for (const QJsonObject &obj : canDefinitions) {
-//         bool ok;
-//         if (obj["index"].toString().toUShort(&ok, 16) == index &&
-//             obj["subindex"].toString().toUShort(&ok, 16) == subindex) {
-//             name = obj["name"].toString();
-//             type = obj["type"].toString();
-//             break;
-//         }
-//     }
-
-//     QString indexStr = QString("%1").arg(index, 4, 16, QLatin1Char('0')).toUpper();
-//     QString subindexStr = QString("%1").arg(subindex, 4, 16, QLatin1Char('0')).toUpper();
-
-//     // ❗ Chuyển `double data` sang float (4 byte) giống bảng 2
-//     float floatData = static_cast<float>(data);
-//     QByteArray byteArray(reinterpret_cast<const char*>(&floatData), sizeof(float));
-//     QString hexData;
-//     for (int i = 0; i < byteArray.size(); ++i) {
-//         hexData += QString("%1 ").arg(static_cast<quint8>(byteArray[i]), 2, 16, QLatin1Char('0')).toUpper();
-//     }
-//     hexData = hexData.trimmed(); // Bỏ khoảng trắng cuối
-
-//     // Kiểm tra nếu đã có dòng trùng index + subindex
-//     int rowCount = ui->tableWidget->rowCount();
-//     for (int i = 0; i < rowCount; ++i) {
-//         QString existingIndex = ui->tableWidget->item(i, 1)->text();
-//         QString existingSubindex = ui->tableWidget->item(i, 2)->text();
-//         if (existingIndex == indexStr && existingSubindex == subindexStr) {
-//             // Cập nhật dòng
-//             ui->tableWidget->item(i, 0)->setText(name);
-//             ui->tableWidget->item(i, 3)->setText(type);
-//             ui->tableWidget->item(i, 4)->setText(hexData);
-
-//             // Tô màu dòng theo index
-//             QColor rowColor = QColor(255, 255, 255); // mặc định trắng
-//             if (index >= 0x01A0 && index <= 0x04A0) {
-//                 rowColor = QColor(255, 200, 200); // Output – đỏ nhạt
-//             } else if (index >= 0x0180 && index <= 0x0190) {
-//                 rowColor = QColor(200, 255, 200); // Input – xanh lá nhạt
-//             }
-
-//             for (int col = 0; col < ui->tableWidget->columnCount(); ++col) {
-//                 ui->tableWidget->item(i, col)->setBackground(rowColor);
-//             }
-
-//             return;
-//         }
-//     }
-
-//     // Nếu không trùng, thêm dòng mới
-//     int row = ui->tableWidget->rowCount();
-//     ui->tableWidget->insertRow(row);
-//     ui->tableWidget->setItem(row, 0, new QTableWidgetItem(name));
-//     ui->tableWidget->setItem(row, 1, new QTableWidgetItem(indexStr));
-//     ui->tableWidget->setItem(row, 2, new QTableWidgetItem(subindexStr));
-//     ui->tableWidget->setItem(row, 3, new QTableWidgetItem(type));
-//     ui->tableWidget->setItem(row, 4, new QTableWidgetItem(hexData));
-
-//     // Tô màu dòng mới theo index
-//     QColor rowColor = QColor(255, 255, 255); // mặc định trắng
-//     if ((index >= 0x01A0 && index <= 0x04A0) || (index == 0x0720)) {
-//         rowColor = QColor(255, 200, 200); // Output – đỏ nhạt
-//     } else if (index >= 0x0180 && index <= 0x0190) {
-//         rowColor = QColor(200, 255, 200); // Input – xanh lá nhạt
-//     }
-
-//     for (int col = 0; col < ui->tableWidget->columnCount(); ++col) {
-//         ui->tableWidget->item(row, col)->setBackground(rowColor);
-//     }
-// }
 void MainWindow::appendToTableWidget(quint16 index, quint8 subindex, const QByteArray &valueData)
 {
     QString name = "Unknown";
