@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     loadJsonData(); // Load dữ liệu từ JSON khi khởi động
-    ui->alltab->setCurrentIndex(0);
+    // ui->alltab->setCurrentIndex(0);
     // loadCANDefinitions();
     // Tạo đối tượng Serial
     Serial = new QSerialPort(this);
