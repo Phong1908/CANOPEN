@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Speed",
+        "index": "0183",
+        "subindex": "0000",
+        "type": "float"
+    },
+    {
+        "name": "Angle",
+        "index": "0182",
+        "subindex": "0000",
+        "type": "float"
+    }
+]
